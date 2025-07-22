@@ -5,10 +5,12 @@ services:
       dockerfile: Dockerfile
     container_name: jera
     environment:
-      - DB_HOST=localhost
-      - DB_PORT=${DB_PORT:-5432}
+      - DB_DIALECT=${DB_DIALECT}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_PASS=${DB_PASS}
       - DB_USER=${DB_USER}
-      - DB_PASS=${DB_NAME}
+      - DB_NAME=${DB_NAME}
     ports:
       - "3000:3000"
     depends_on:
@@ -16,13 +18,13 @@ services:
 
   db:
     image: postgres
-    container_name: postgres
+    container_name: ${DB_HOST}
     environment:
       POSTGRES_PASSWORD: ${DB_PASS}
       POSTGRES_USER: ${DB_USER}
       POSTGRES_DB: ${DB_NAME}
     ports:
-      - ${DB_PORT}:5432
+      - ${DB_PORT}:${DB_PORT}
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
