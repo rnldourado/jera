@@ -1,61 +1,15 @@
 import express from "express";
 import * as dotenv from "dotenv";
 import sequelize from "./config/database";
-import { UserRepository } from "./repository/userRepository";
-import { ProjetoRepository } from "./repository/projetoRepository";
-
+import routes from "./routes";
 
 dotenv.config();
-
 
 const app = express();
 app.use(express.json());
 
-
-const userRepo = new UserRepository();
-
-
-app.post("/users", async (req, res) => {
-  try {
-    const { name, email, password } = req.body;
-    const user = await userRepo.createUser(name, email, password);
-    res.json(user); // Retorna o usuário criado
-  } catch (error: any) {
-    res.status(500).json({ message: "Erro ao criar o usuário", error: error.message });
-  }
-});
-
-app.get("/users", async (req, res) => {
-  try {
-    const users = await userRepo.getAllUsers();
-    res.json(users); // Retorna todos os usuários
-  } catch (error: any) {
-    res.status(500).json({ message: "Erro ao obter os usuários", error: error.message });
-  }
-});
-
-app.post("/projetos", async (req, res) => {
-  try {
-    const { nome, descricao, status, dataInicio, prazo, criadorId } = req.body;
-    const projetoRepo = new ProjetoRepository();
-    const projeto = await projetoRepo.createProjeto(nome, descricao, status, dataInicio, prazo, criadorId);
-    res.json(projeto);
-  } catch (error: any) {
-    res.status(500).json({ message: "Erro ao criar o projeto", error: error.message });
-  }
-}
-);
-
-app.get("/projetos", async (req, res) => {
-  try {
-    const projetoRepo = new ProjetoRepository();
-    const projetos = await projetoRepo.getAllProjetos();
-    res.json(projetos);
-  } catch (error: any) {
-    res.status(500).json({ message: "Erro ao obter os projetos", error: error.message });
-  }
-}
-);
+// Registrar todas as rotas
+app.use("/api", routes);
 
 sequelize.sync({ force: true }).then(() => {
   console.log("Banco de dados conectado!");

@@ -20,7 +20,7 @@ export class ProjetoRepository {
         });
     }
 
-    // Obter todos os projetos
+    
     async getAllProjetos() {
         return await Projeto.findAll();
     }
