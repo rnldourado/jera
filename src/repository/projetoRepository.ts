@@ -19,9 +19,12 @@ export class ProjetoRepository {
             criadorId
         });
     }
-
     
     async getAllProjetos() {
         return await Projeto.findAll();
+    }
+
+    async getProjetoById(id: number) {
+        return await Projeto.findByPk(id);
     }
 }

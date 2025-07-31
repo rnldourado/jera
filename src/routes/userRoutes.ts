@@ -1,28 +1,22 @@
-import { Router, Request, Response } from "express";
-import { UserRepository } from "../repository/userRepository";
+import { Router } from "express";
+import { UserController } from "../controllers/userController";
 
 const router = Router();
-const userRepo = new UserRepository();
+const userController = new UserController();
 
 // POST /users - Criar usuário
-router.post("/", async (req: Request, res: Response) => {
-  try {
-    const { name, email, password } = req.body;
-    const user = await userRepo.createUser(name, email, password);
-    res.json(user); // Retorna o usuário criado
-  } catch (error: any) {
-    res.status(500).json({ message: "Erro ao criar o usuário", error: error.message });
-  }
-});
+router.post("/", userController.createUser);
 
 // GET /users - Obter todos os usuários
-router.get("/", async (req: Request, res: Response) => {
-  try {
-    const users = await userRepo.getAllUsers();
-    res.json(users); // Retorna todos os usuários
-  } catch (error: any) {
-    res.status(500).json({ message: "Erro ao obter os usuários", error: error.message });
-  }
-});
+router.get("/", userController.getAllUsers);
+
+// GET /users/:id - Obter usuário por ID
+router.get("/:id", userController.getUserById);
+
+// PUT /users/:id - Atualizar usuário
+router.put("/:id", userController.updateUser);
+
+// DELETE /users/:id - Deletar usuário
+router.delete("/:id", userController.deleteUser);
 
 export default router;
