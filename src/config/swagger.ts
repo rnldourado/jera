@@ -149,6 +149,89 @@ const options = {
             },
           },
         },
+        Sprint: {
+          type: 'object',
+          required: ['nome', 'descricao', 'dataInicio', 'dataFim', 'status', 'projetoId'],
+          properties: {
+            id: {
+              type: 'integer',
+              description: 'ID único da sprint',
+              example: 1,
+            },
+            nome: {
+              type: 'string',
+              description: 'Nome da sprint',
+              example: 'Sprint 1 - Login',
+            },
+            descricao: {
+              type: 'string',
+              description: 'Descrição da sprint',
+              example: 'Implementação do sistema de login e autenticação',
+            },
+            dataInicio: {
+              type: 'string',
+              format: 'date',
+              description: 'Data de início da sprint',
+              example: '2025-01-01',
+            },
+            dataFim: {
+              type: 'string',
+              format: 'date',
+              description: 'Data de fim da sprint',
+              example: '2025-01-15',
+            },
+            status: {
+              type: 'string',
+              enum: ['planning', 'in_progress', 'ended'],
+              description: 'Status da sprint',
+              example: 'planning',
+            },
+            projetoId: {
+              type: 'integer',
+              description: 'ID do projeto ao qual a sprint pertence',
+              example: 1,
+            },
+          },
+        },
+        SprintInput: {
+          type: 'object',
+          required: ['nome', 'descricao', 'dataInicio', 'dataFim', 'status', 'projetoId'],
+          properties: {
+            nome: {
+              type: 'string',
+              description: 'Nome da sprint',
+              example: 'Sprint 1 - Login',
+            },
+            descricao: {
+              type: 'string',
+              description: 'Descrição da sprint',
+              example: 'Implementação do sistema de login e autenticação',
+            },
+            dataInicio: {
+              type: 'string',
+              format: 'date',
+              description: 'Data de início da sprint',
+              example: '2025-01-01',
+            },
+            dataFim: {
+              type: 'string',
+              format: 'date',
+              description: 'Data de fim da sprint',
+              example: '2025-01-15',
+            },
+            status: {
+              type: 'string',
+              enum: ['planning', 'in_progress', 'ended'],
+              description: 'Status da sprint',
+              example: 'planning',
+            },
+            projetoId: {
+              type: 'integer',
+              description: 'ID do projeto ao qual a sprint pertence',
+              example: 1,
+            },
+          },
+        },
         Error: {
           type: 'object',
           properties: {

@@ -1,4 +1,4 @@
-import { ProjetoRepository } from "../repository/projetoRepository";
+import { ProjetoRepository } from "../repositories/projetoRepository";
 
 export type ProjetoStatus = "to do" | "in progress" | "done";
 
@@ -95,7 +95,6 @@ export class ProjetoService {
         throw new Error("Projeto não encontrado");
       }
 
-      // Validações de negócio
       if (data.nome !== undefined && (!data.nome || data.nome.trim().length === 0)) {
         throw new Error("Nome do projeto não pode estar vazio");
       }
@@ -108,7 +107,6 @@ export class ProjetoService {
         throw new Error("Data de início não pode ser posterior ao prazo");
       }
 
-      // Atualizar apenas os campos fornecidos
       if (data.nome !== undefined) projeto.nome = data.nome;
       if (data.descricao !== undefined) projeto.descricao = data.descricao;
       if (data.status !== undefined) projeto.status = data.status;

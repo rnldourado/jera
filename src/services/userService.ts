@@ -1,4 +1,4 @@
-import { UserRepository } from "../repository/userRepository";
+import { UserRepository } from "../repositories/userRepository";
 
 export interface CreateUserDTO {
   name: string;
@@ -21,7 +21,6 @@ export class UserService {
 
   async createUser(data: CreateUserDTO) {
     try {
-      // Validações de negócio
       if (!data.name || data.name.trim().length === 0) {
         throw new Error("Nome do usuário é obrigatório");
       }
@@ -34,7 +33,6 @@ export class UserService {
         throw new Error("Senha deve ter pelo menos 6 caracteres");
       }
 
-      // Validação de email simples
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(data.email)) {
         throw new Error("Email inválido");
@@ -90,7 +88,6 @@ export class UserService {
         throw new Error("Usuário não encontrado");
       }
 
-      // Validações de negócio
       if (data.name !== undefined && (!data.name || data.name.trim().length === 0)) {
         throw new Error("Nome do usuário não pode estar vazio");
       }
@@ -110,7 +107,6 @@ export class UserService {
         throw new Error("Senha deve ter pelo menos 6 caracteres");
       }
 
-      // Atualizar apenas os campos fornecidos
       if (data.name !== undefined) user.name = data.name;
       if (data.email !== undefined) user.email = data.email;
       if (data.password !== undefined) user.password = data.password;
