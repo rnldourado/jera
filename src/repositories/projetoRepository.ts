@@ -1,7 +1,7 @@
 import { Projeto } from "../models/Projeto";
 
 export class ProjetoRepository {
-    // Criar um novo projeto
+    
     async createProjeto(
         nome: string,
         descricao: string,
