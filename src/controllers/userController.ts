@@ -8,7 +8,6 @@ export class UserController {
     this.userService = new UserService();
   }
 
-  // POST /users - Criar usuário
   createUser = async (req: Request, res: Response) => {
     try {
       const data: CreateUserDTO = req.body;
@@ -22,7 +21,6 @@ export class UserController {
     }
   };
 
-  // GET /users - Obter todos os usuários
   getAllUsers = async (req: Request, res: Response) => {
     try {
       const users = await this.userService.getAllUsers();
@@ -35,7 +33,6 @@ export class UserController {
     }
   };
 
-  // GET /users/:id - Obter usuário por ID
   getUserById = async (req: Request, res: Response) => {
     try {
       const id = Number(req.params.id);
@@ -53,7 +50,6 @@ export class UserController {
     }
   };
 
-  // PUT /users/:id - Atualizar usuário
   updateUser = async (req: Request, res: Response) => {
     try {
       const id = Number(req.params.id);
@@ -72,7 +68,6 @@ export class UserController {
     }
   };
 
-  // DELETE /users/:id - Deletar usuário
   deleteUser = async (req: Request, res: Response) => {
     try {
       const id = Number(req.params.id);

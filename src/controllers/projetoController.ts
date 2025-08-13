@@ -8,7 +8,6 @@ export class ProjetoController {
     this.projetoService = new ProjetoService();
   }
 
-  // POST /projetos - Criar projeto
   createProjeto = async (req: Request, res: Response) => {
     try {
       const data: CreateProjetoDTO = req.body;
@@ -22,7 +21,6 @@ export class ProjetoController {
     }
   };
 
-  // GET /projetos - Obter todos os projetos
   getAllProjetos = async (req: Request, res: Response) => {
     try {
       const projetos = await this.projetoService.getAllProjetos();
@@ -35,7 +33,6 @@ export class ProjetoController {
     }
   };
 
-  // GET /projetos/:id - Obter projeto por ID
   getProjetoById = async (req: Request, res: Response) => {
     try {
       const id = Number(req.params.id);
@@ -53,7 +50,6 @@ export class ProjetoController {
     }
   };
 
-  // PUT /projetos/:id - Atualizar projeto
   updateProjeto = async (req: Request, res: Response) => {
     try {
       const id = Number(req.params.id);
@@ -72,7 +68,6 @@ export class ProjetoController {
     }
   };
 
-  // DELETE /projetos/:id - Deletar projeto
   deleteProjeto = async (req: Request, res: Response) => {
     try {
       const id = Number(req.params.id);
