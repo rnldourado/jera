@@ -2,6 +2,7 @@ import { Router } from "express";
 import userRoutes from "./userRoutes";
 import projetoRoutes from "./projetoRoutes";
 import sprintRoutes from "./sprintRoutes";
+import tarefaRoutes from "./tarefaRoutes";
 
 /**
  * @swagger
@@ -12,6 +13,8 @@ import sprintRoutes from "./sprintRoutes";
  *     description: Operações relacionadas aos projetos
  *   - name: Sprints
  *     description: Operações relacionadas às sprints
+ *   - name: Tarefas
+ *     description: Operações relacionadas às tarefas
  */
 
 const router = Router();
@@ -20,5 +23,6 @@ const router = Router();
 router.use("/users", userRoutes);
 router.use("/projetos", projetoRoutes);
 router.use("/sprints", sprintRoutes);
+router.use("/tarefas", tarefaRoutes);
 
 export default router;

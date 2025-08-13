@@ -232,6 +232,151 @@ const options = {
             },
           },
         },
+        Tarefa: {
+          type: 'object',
+          required: ['nome', 'descricao', 'status', 'prioridade', 'dataCriacao', 'responsavelId', 'sprintId', 'projetoId'],
+          properties: {
+            id: {
+              type: 'integer',
+              description: 'ID único da tarefa',
+              example: 1,
+            },
+            nome: {
+              type: 'string',
+              description: 'Nome da tarefa',
+              example: 'Implementar tela de login',
+            },
+            descricao: {
+              type: 'string',
+              description: 'Descrição detalhada da tarefa',
+              example: 'Criar formulário de login com validação de email e senha',
+            },
+            status: {
+              type: 'string',
+              enum: ['to do', 'in progress', 'done'],
+              description: 'Status atual da tarefa',
+              example: 'to do',
+            },
+            prioridade: {
+              type: 'string',
+              enum: ['low', 'medium', 'high'],
+              description: 'Prioridade da tarefa',
+              example: 'high',
+            },
+            dataCriacao: {
+              type: 'string',
+              format: 'date-time',
+              description: 'Data e hora de criação da tarefa',
+              example: '2025-01-01T10:00:00Z',
+            },
+            dataConclusao: {
+              type: 'string',
+              format: 'date-time',
+              description: 'Data e hora de conclusão da tarefa (opcional)',
+              example: '2025-01-05T15:30:00Z',
+            },
+            responsavelId: {
+              type: 'integer',
+              description: 'ID do usuário responsável pela tarefa',
+              example: 1,
+            },
+            sprintId: {
+              type: 'integer',
+              description: 'ID da sprint à qual a tarefa pertence',
+              example: 1,
+            },
+            projetoId: {
+              type: 'integer',
+              description: 'ID do projeto ao qual a tarefa pertence',
+              example: 1,
+            },
+          },
+        },
+        TarefaInput: {
+          type: 'object',
+          required: ['nome', 'descricao', 'status', 'prioridade', 'responsavelId', 'sprintId', 'projetoId'],
+          properties: {
+            nome: {
+              type: 'string',
+              description: 'Nome da tarefa',
+              example: 'Implementar tela de login',
+            },
+            descricao: {
+              type: 'string',
+              description: 'Descrição detalhada da tarefa',
+              example: 'Criar formulário de login com validação de email e senha',
+            },
+            status: {
+              type: 'string',
+              enum: ['to do', 'in progress', 'done'],
+              description: 'Status inicial da tarefa',
+              example: 'to do',
+            },
+            prioridade: {
+              type: 'string',
+              enum: ['low', 'medium', 'high'],
+              description: 'Prioridade da tarefa',
+              example: 'high',
+            },
+            responsavelId: {
+              type: 'integer',
+              description: 'ID do usuário responsável pela tarefa',
+              example: 1,
+            },
+            sprintId: {
+              type: 'integer',
+              description: 'ID da sprint à qual a tarefa pertence',
+              example: 1,
+            },
+            projetoId: {
+              type: 'integer',
+              description: 'ID do projeto ao qual a tarefa pertence',
+              example: 1,
+            },
+          },
+        },
+        TarefaUpdateInput: {
+          type: 'object',
+          properties: {
+            nome: {
+              type: 'string',
+              description: 'Nome da tarefa',
+              example: 'Implementar tela de login atualizada',
+            },
+            descricao: {
+              type: 'string',
+              description: 'Descrição detalhada da tarefa',
+              example: 'Criar formulário de login com validação aprimorada',
+            },
+            status: {
+              type: 'string',
+              enum: ['to do', 'in progress', 'done'],
+              description: 'Novo status da tarefa',
+              example: 'in progress',
+            },
+            prioridade: {
+              type: 'string',
+              enum: ['low', 'medium', 'high'],
+              description: 'Nova prioridade da tarefa',
+              example: 'medium',
+            },
+            responsavelId: {
+              type: 'integer',
+              description: 'Novo ID do usuário responsável',
+              example: 2,
+            },
+            sprintId: {
+              type: 'integer',
+              description: 'Novo ID da sprint',
+              example: 2,
+            },
+            projetoId: {
+              type: 'integer',
+              description: 'Novo ID do projeto',
+              example: 1,
+            },
+          },
+        },
         Error: {
           type: 'object',
           properties: {
