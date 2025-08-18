@@ -377,6 +377,106 @@ const options = {
             },
           },
         },
+        Administrador: {
+          type: 'object',
+          required: ['userId', 'nivel'],
+          properties: {
+            id: {
+              type: 'integer',
+              description: 'ID único do administrador',
+              example: 1,
+            },
+            userId: {
+              type: 'integer',
+              description: 'ID do usuário associado',
+              example: 1,
+            },
+            nivel: {
+              type: 'string',
+              enum: ['super', 'moderador', 'suporte'],
+              description: 'Nível de acesso do administrador',
+              example: 'moderador',
+            },
+            permissoes: {
+              type: 'array',
+              items: {
+                type: 'string',
+              },
+              description: 'Lista de permissões específicas',
+              example: ['gerenciar_usuarios', 'visualizar_relatorios'],
+            },
+            ativo: {
+              type: 'boolean',
+              description: 'Se o administrador está ativo',
+              example: true,
+            },
+            dataCriacao: {
+              type: 'string',
+              format: 'date-time',
+              description: 'Data de criação do administrador',
+              example: '2025-01-20T10:00:00.000Z',
+            },
+            dataAtualizacao: {
+              type: 'string',
+              format: 'date-time',
+              description: 'Data da última atualização',
+              example: '2025-01-20T15:30:00.000Z',
+            },
+            user: {
+              $ref: '#/components/schemas/User',
+              description: 'Dados do usuário associado',
+            },
+          },
+        },
+        AdministradorInput: {
+          type: 'object',
+          required: ['userId', 'nivel'],
+          properties: {
+            userId: {
+              type: 'integer',
+              description: 'ID do usuário que será administrador',
+              example: 1,
+            },
+            nivel: {
+              type: 'string',
+              enum: ['super', 'moderador', 'suporte'],
+              description: 'Nível de acesso do administrador',
+              example: 'moderador',
+            },
+            permissoes: {
+              type: 'array',
+              items: {
+                type: 'string',
+              },
+              description: 'Lista de permissões específicas (opcional)',
+              example: ['gerenciar_usuarios', 'visualizar_relatorios'],
+            },
+          },
+        },
+        AdministradorUpdateInput: {
+          type: 'object',
+          properties: {
+            nivel: {
+              type: 'string',
+              enum: ['super', 'moderador', 'suporte'],
+              description: 'Nível de acesso do administrador',
+              example: 'moderador',
+            },
+            permissoes: {
+              type: 'array',
+              items: {
+                type: 'string',
+              },
+              description: 'Lista de permissões específicas',
+              example: ['gerenciar_usuarios', 'visualizar_relatorios'],
+            },
+            ativo: {
+              type: 'boolean',
+              description: 'Se o administrador está ativo',
+              example: true,
+            },
+          },
+        },
         Error: {
           type: 'object',
           properties: {

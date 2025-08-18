@@ -3,6 +3,8 @@ import userRoutes from "./userRoutes";
 import projetoRoutes from "./projetoRoutes";
 import sprintRoutes from "./sprintRoutes";
 import tarefaRoutes from "./tarefaRoutes";
+import administradorRoutes from "./administradorRoutes";
+import administradorExtendedRoutes from "./administradorExtendedRoutes";
 
 /**
  * @swagger
@@ -15,6 +17,8 @@ import tarefaRoutes from "./tarefaRoutes";
  *     description: Operações relacionadas às sprints
  *   - name: Tarefas
  *     description: Operações relacionadas às tarefas
+ *   - name: Administradores
+ *     description: Operações relacionadas aos administradores
  */
 
 const router = Router();
@@ -24,5 +28,7 @@ router.use("/users", userRoutes);
 router.use("/projetos", projetoRoutes);
 router.use("/sprints", sprintRoutes);
 router.use("/tarefas", tarefaRoutes);
+router.use("/administradores", administradorRoutes);
+router.use("/administradores", administradorExtendedRoutes);
 
 export default router;
