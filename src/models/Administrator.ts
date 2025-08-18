@@ -1,27 +1,27 @@
 import { Model, DataTypes, Optional } from 'sequelize';
 import sequelize from '../config/database';
 
-interface AdministradorCreationAttributes extends Optional<AdministradorAttributes, 'id'> {}
+interface AdministratorCreationAttributes extends Optional<AdministratorAttributes, 'id'> {}
 
-interface AdministradorAttributes {
+interface AdministratorAttributes {
   id: number;
   userId: number;
-  nivel: 'super' | 'moderador' | 'suporte';
-  permissoes: string[];
-  dataAtivacao: Date;
-  ativo: boolean;
+  level: 'super' | 'moderator' | 'support';
+  permissions: string[];
+  activationDate: Date;
+  active: boolean;
 }
 
-export class Administrador extends Model<AdministradorAttributes, AdministradorCreationAttributes> implements AdministradorAttributes {
+export class Administrator extends Model<AdministratorAttributes, AdministratorCreationAttributes> implements AdministratorAttributes {
   public id!: number;
   public userId!: number;
-  public nivel!: 'super' | 'moderador' | 'suporte';
-  public permissoes!: string[];
-  public dataAtivacao!: Date;
-  public ativo!: boolean;
+  public level!: 'super' | 'moderator' | 'support';
+  public permissions!: string[];
+  public activationDate!: Date;
+  public active!: boolean;
 }
 
-Administrador.init(
+Administrator.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -37,22 +37,22 @@ Administrador.init(
         key: 'id',
       },
     },
-    nivel: {
-      type: DataTypes.ENUM('super', 'moderador', 'suporte'),
+    level: {
+      type: DataTypes.ENUM('super', 'moderator', 'support'),
       allowNull: false,
-      defaultValue: 'suporte',
+      defaultValue: 'support',
     },
-    permissoes: {
+    permissions: {
       type: DataTypes.JSON,
       allowNull: false,
       defaultValue: [],
     },
-    dataAtivacao: {
+    activationDate: {
       type: DataTypes.DATE,
       allowNull: false,
       defaultValue: DataTypes.NOW,
     },
-    ativo: {
+    active: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: true,
@@ -60,9 +60,9 @@ Administrador.init(
   },
   {
     sequelize,
-    tableName: "administradores",
+    tableName: "administrators",
     timestamps: false,
   }
 );
 
-export default Administrador;
+export default Administrator;

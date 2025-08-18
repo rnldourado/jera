@@ -1,45 +1,45 @@
 import { DataTypes, Model, Optional } from "sequelize";
 import sequelize from "../config/database";
 
-export interface TarefaAttributes {
+export interface TaskAttributes {
     id: number;
-    nome: string;
-    descricao: string;
+    name: string;
+    description: string;
     status: "to do" | "in progress" | "done";
-    prioridade: "low" | "medium" | "high";
-    dataCriacao: Date;
-    dataConclusao?: Date;
-    responsavelId: number;
+    priority: "low" | "medium" | "high";
+    createdAt: Date;
+    completedAt?: Date;
+    assigneeId: number;
     sprintId: number;
-    projetoId: number;
+    projectId: number;
 }
-export interface TarefaCreationAttributes extends Optional<TarefaAttributes, "id" | "dataConclusao"> { }
+export interface TaskCreationAttributes extends Optional<TaskAttributes, "id" | "completedAt"> { }
 
-export class Tarefa extends Model<TarefaAttributes, TarefaCreationAttributes> implements TarefaAttributes {
+export class Task extends Model<TaskAttributes, TaskCreationAttributes> implements TaskAttributes {
     public id!: number;
-    public nome!: string;
-    public descricao!: string;
+    public name!: string;
+    public description!: string;
     public status!: "to do" | "in progress" | "done";
-    public prioridade!: "low" | "medium" | "high";
-    public dataCriacao!: Date;
-    public dataConclusao?: Date;
-    public responsavelId!: number;
+    public priority!: "low" | "medium" | "high";
+    public createdAt!: Date;
+    public completedAt?: Date;
+    public assigneeId!: number;
     public sprintId!: number;
-    public projetoId!: number;
+    public projectId!: number;
 }
 
-Tarefa.init(
+Task.init(
     {
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
         },
-        nome: {
+        name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        descricao: {
+        description: {
             type: DataTypes.STRING,
             allowNull: true,
         },
@@ -47,20 +47,20 @@ Tarefa.init(
             type: DataTypes.ENUM("to do", "in progress", "done"),
             allowNull: false,
         },
-        prioridade: {
+        priority: {
             type: DataTypes.ENUM("low", "medium", "high"),
             allowNull: false,
         },
-        dataCriacao: {
+        createdAt: {
             type: DataTypes.DATE,
             allowNull: false,
             defaultValue: DataTypes.NOW,
         },
-        dataConclusao: {
+        completedAt: {
             type: DataTypes.DATE,
             allowNull: true,
         },
-        responsavelId: {
+        assigneeId: {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
@@ -68,13 +68,13 @@ Tarefa.init(
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        projetoId: {
+        projectId: {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
     },
     {
         sequelize,
-        tableName: "tarefas",
+        tableName: "tasks",
     }
 );
