@@ -1,165 +1,165 @@
 import { Router } from "express";
-import { ProjetoController } from "../controllers/projetoController";
+import { ProjectController } from "../controllers/projectController";
 
 const router = Router();
-const projetoController = new ProjetoController();
+const projectController = new ProjectController();
 
 /**
  * @swagger
- * /projetos:
+ * /projects:
  *   post:
- *     summary: Criar um novo projeto
- *     tags: [Projetos]
+ *     summary: Create a new project
+ *     tags: [Projects]
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/ProjetoInput'
+ *             $ref: '#/components/schemas/ProjectInput'
  *     responses:
  *       201:
- *         description: Projeto criado com sucesso
+ *         description: Project created successfully
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Projeto'
+ *               $ref: '#/components/schemas/Project'
  *       400:
- *         description: Dados inválidos
+ *         description: Invalid data
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Error'
  *       500:
- *         description: Erro interno do servidor
+ *         description: Internal server error
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
-router.post("/", projetoController.createProjeto);
+router.post("/", projectController.createProject);
 
 /**
  * @swagger
- * /projetos:
+ * /projects:
  *   get:
- *     summary: Obter todos os projetos
- *     tags: [Projetos]
+ *     summary: Get all projects
+ *     tags: [Projects]
  *     responses:
  *       200:
- *         description: Lista de projetos retornada com sucesso
+ *         description: List of projects returned successfully
  *         content:
  *           application/json:
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Projeto'
+ *                 $ref: '#/components/schemas/Project'
  *       500:
- *         description: Erro interno do servidor
+ *         description: Internal server error
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
-router.get("/", projetoController.getAllProjetos);
+router.get("/", projectController.getAllProjects);
 
 /**
  * @swagger
- * /projetos/{id}:
+ * /projects/{id}:
  *   get:
- *     summary: Obter projeto por ID
- *     tags: [Projetos]
+ *     summary: Get project by ID
+ *     tags: [Projects]
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
  *         schema:
  *           type: integer
- *         description: ID do projeto
+ *         description: Project ID
  *     responses:
  *       200:
- *         description: Projeto encontrado
+ *         description: Project found
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Projeto'
+ *               $ref: '#/components/schemas/Project'
  *       404:
- *         description: Projeto não encontrado
+ *         description: Project not found
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Error'
  *       500:
- *         description: Erro interno do servidor
+ *         description: Internal server error
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
-router.get("/:id", projetoController.getProjetoById);
+router.get("/:id", projectController.getProjectById);
 
 /**
  * @swagger
- * /projetos/{id}:
+ * /projects/{id}:
  *   put:
- *     summary: Atualizar projeto
- *     tags: [Projetos]
+ *     summary: Update project
+ *     tags: [Projects]
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
  *         schema:
  *           type: integer
- *         description: ID do projeto
+ *         description: Project ID
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/ProjetoInput'
+ *             $ref: '#/components/schemas/ProjectInput'
  *     responses:
  *       200:
- *         description: Projeto atualizado com sucesso
+ *         description: Project updated successfully
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Projeto'
+ *               $ref: '#/components/schemas/Project'
  *       404:
- *         description: Projeto não encontrado
+ *         description: Project not found
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Error'
  *       400:
- *         description: Dados inválidos
+ *         description: Invalid data
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Error'
  *       500:
- *         description: Erro interno do servidor
+ *         description: Internal server error
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
-router.put("/:id", projetoController.updateProjeto);
+router.put("/:id", projectController.updateProject);
 
 /**
  * @swagger
- * /projetos/{id}:
+ * /projects/{id}:
  *   delete:
- *     summary: Deletar projeto
- *     tags: [Projetos]
+ *     summary: Delete project
+ *     tags: [Projects]
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
  *         schema:
  *           type: integer
- *         description: ID do projeto
+ *         description: Project ID
  *     responses:
  *       200:
- *         description: Projeto deletado com sucesso
+ *         description: Project deleted successfully
  *         content:
  *           application/json:
  *             schema:
@@ -167,20 +167,20 @@ router.put("/:id", projetoController.updateProjeto);
  *               properties:
  *                 message:
  *                   type: string
- *                   example: "Projeto deletado com sucesso"
+ *                   example: "Project deleted successfully"
  *       404:
- *         description: Projeto não encontrado
+ *         description: Project not found
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Error'
  *       500:
- *         description: Erro interno do servidor
+ *         description: Internal server error
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
-router.delete("/:id", projetoController.deleteProjeto);
+router.delete("/:id", projectController.deleteProject);
 
 export default router;

@@ -1,42 +1,42 @@
 import { Router } from "express";
-import { AdministradorController } from "../controllers/administradorController";
+import { AdministratorController } from "../controllers/administratorController";
 
 const router = Router();
-const administradorController = new AdministradorController();
+const administratorController = new AdministratorController();
 
 /**
  * @swagger
- * /administradores:
+ * /administrators:
  *   post:
- *     summary: Criar um novo administrador
- *     tags: [Administradores]
+ *     summary: Create a new administrator
+ *     tags: [Administrators]
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/AdministradorInput'
+ *             $ref: '#/components/schemas/AdministratorInput'
  *     responses:
  *       201:
- *         description: Administrador criado com sucesso
+ *         description: Administrator created successfully
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Administrador'
+ *               $ref: '#/components/schemas/Administrator'
  *       400:
- *         description: Dados inválidos
+ *         description: Invalid data
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Error'
  *       500:
- *         description: Erro interno do servidor
+ *         description: Internal server error
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
-router.post("/", administradorController.createAdministrador);
+router.post("/", administratorController.createAdministrator);
 
 /**
  * @swagger
@@ -60,7 +60,7 @@ router.post("/", administradorController.createAdministrador);
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
-router.get("/", administradorController.getAllAdministradores);
+router.get("/", administratorController.getAllAdministrators);
 
 /**
  * @swagger
@@ -89,7 +89,7 @@ router.get("/", administradorController.getAllAdministradores);
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
-router.get("/permissoes", administradorController.getPermissoesDisponiveis);
+router.get("/permissions", administratorController.getAvailablePermissions);
 
 /**
  * @swagger
@@ -113,7 +113,7 @@ router.get("/permissoes", administradorController.getPermissoesDisponiveis);
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
-router.get("/ativos", administradorController.getAdministradoresAtivos);
+router.get("/active", administratorController.getActiveAdministrators);
 
 /**
  * @swagger
@@ -148,7 +148,7 @@ router.get("/ativos", administradorController.getAdministradoresAtivos);
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
-router.get("/:id", administradorController.getAdministradorById);
+router.get("/:id", administratorController.getAdministratorById);
 
 /**
  * @swagger
@@ -195,7 +195,7 @@ router.get("/:id", administradorController.getAdministradorById);
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
-router.put("/:id", administradorController.updateAdministrador);
+router.put("/:id", administratorController.updateAdministrator);
 
 /**
  * @swagger
@@ -236,7 +236,7 @@ router.put("/:id", administradorController.updateAdministrador);
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
-router.patch("/:id/ativar", administradorController.ativarAdministrador);
+router.patch("/:id/activate", administratorController.activateAdministrator);
 
 /**
  * @swagger
@@ -277,7 +277,7 @@ router.patch("/:id/ativar", administradorController.ativarAdministrador);
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
-router.patch("/:id/desativar", administradorController.desativarAdministrador);
+router.patch("/:id/deactivate", administratorController.deactivateAdministrator);
 
 /**
  * @swagger
@@ -316,6 +316,6 @@ router.patch("/:id/desativar", administradorController.desativarAdministrador);
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
-router.delete("/:id", administradorController.deleteAdministrador);
+router.delete("/:id", administratorController.deleteAdministrator);
 
 export default router;

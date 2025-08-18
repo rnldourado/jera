@@ -1,31 +1,31 @@
 import { Router } from "express";
-import { AdministradorController } from "../controllers/administradorController";
+import { AdministratorController } from "../controllers/administratorController";
 
 const router = Router();
-const administradorController = new AdministradorController();
+const administratorController = new AdministratorController();
 
 /**
  * @swagger
- * /administradores/usuario/{userId}:
+ * /administrators/user/{userId}:
  *   get:
- *     summary: Obter administrador por ID do usuário
- *     tags: [Administradores]
+ *     summary: Get administrator by user ID
+ *     tags: [Administrators]
  *     parameters:
  *       - in: path
  *         name: userId
  *         required: true
  *         schema:
  *           type: integer
- *         description: ID do usuário
+ *         description: User ID
  *     responses:
  *       200:
- *         description: Administrador encontrado
+ *         description: Administrator found
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Administrador'
+ *               $ref: '#/components/schemas/Administrator'
  *       404:
- *         description: Este usuário não é um administrador
+ *         description: This user is not an administrator
  *         content:
  *           application/json:
  *             schema:
@@ -38,7 +38,7 @@ const administradorController = new AdministradorController();
  *               $ref: '#/components/schemas/Error'
  */
 router.get("/usuario/:userId", (req, res) => {
-    administradorController.getAdministradorByUserId(req, res);
+    administratorController.getAdministratorByUserId(req, res);
 });
 
 /**
@@ -78,7 +78,7 @@ router.get("/usuario/:userId", (req, res) => {
  *               $ref: '#/components/schemas/Error'
  */
 router.get("/nivel/:nivel", (req, res) => {
-    administradorController.getAdministradoresByNivel(req, res);
+    administratorController.getAdministratorsByLevel(req, res);
 });
 
 /**
@@ -131,7 +131,7 @@ router.get("/nivel/:nivel", (req, res) => {
  *               $ref: '#/components/schemas/Error'
  */
 router.post("/verificar-permissao", (req, res) => {
-    administradorController.verificarPermissao(req, res);
+    administratorController.checkPermission(req, res);
 });
 
 export default router;
