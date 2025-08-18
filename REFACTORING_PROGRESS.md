@@ -10,20 +10,18 @@
 ### Repositories
 - [x] projetoRepository → projectRepository (renamed and translated)
 - [x] sprintRepository (translated methods and messages)
-
-## 🚧 In Progress
-
-### Repositories (Remaining)
-- [ ] tarefaRepository → taskRepository
-- [ ] administradorRepository → administratorRepository
+- [x] tarefaRepository → taskRepository (renamed and translated)
+- [x] administradorRepository → administratorRepository (renamed and translated)
 - [ ] userRepository (update if needed)
 
 ### Services
-- [ ] projetoService → projectService
-- [ ] sprintService → sprintService
-- [ ] tarefaService → taskService
-- [ ] administradorService → administratorService
+- [x] projetoService → projectService (renamed and translated)
+- [x] sprintService (translated methods and DTOs)
+- [x] tarefaService → taskService (renamed and translated)
+- [x] administradorService → administratorService (renamed and translated)
 - [ ] userService (update if needed)
+
+## 🚧 In Progress
 
 ### Controllers
 - [ ] projetoController → projectController
