@@ -15,9 +15,6 @@ export interface UpdateUserDTO {
 }
 
 export class UserService {
-  static getUserByUsername(username: any) {
-      throw new Error('Method not implemented.');
-  }
   private userRepository: UserRepository;
 
   constructor() {

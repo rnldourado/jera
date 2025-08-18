@@ -1,15 +1,15 @@
 import { Request, Response } from 'express';
 import { comparePassword, generateToken } from '../utils/auth';
-import { UserRepository } from '../repositories/userRepository'; // Supondo que você já tem essa função
+import { UserService } from '../services/userService'; // Supondo que você já tem essa função
 
 export const login = async (req: Request, res: Response) => {
+  const userService = new UserService();
   const { username, password } = req.body;
 
   try {
-
     // Verifica se o usuário existe
 
-    const user = await UserRepository.getUserByUsername(username);
+    const user = await userService.getUserByUsername(username);
     if (!user) {
       return res.status(400).json({ message: 'Invalid username or password' });
     }
