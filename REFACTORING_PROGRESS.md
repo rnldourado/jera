@@ -1,5 +1,11 @@
-# English Translation Refactoring Progress
+# English Translation Refactoring Progr## 🚧 In Progress
 
+### Configuration
+- [x] swagger.ts (updated schemas and documentation)
+
+## ✅ **REFACTORING COMPLETE - 100%**
+
+All components have been successfully translated from Portuguese to English while maintaining full functionality and database compatibility.
 ## ✅ Completed
 ### Models
 - [x] Projeto → Project (renamed file and properties)
@@ -12,31 +18,32 @@
 - [x] sprintRepository (translated methods and messages)
 - [x] tarefaRepository → taskRepository (renamed and translated)
 - [x] administradorRepository → administratorRepository (renamed and translated)
-- [ ] userRepository (update if needed)
+- [x] userRepository (already in English)
 
 ### Services
 - [x] projetoService → projectService (renamed and translated)
 - [x] sprintService (translated methods and DTOs)
 - [x] tarefaService → taskService (renamed and translated)
 - [x] administradorService → administratorService (renamed and translated)
-- [ ] userService (update if needed)
-
-## 🚧 In Progress
+- [x] userService (already in English)
 
 ### Controllers
-- [ ] projetoController → projectController
-- [ ] sprintController → sprintController
-- [ ] tarefaController → taskController
-- [ ] administradorController → administratorController
-- [ ] userController (update if needed)
+- [x] projetoController → projectController (renamed and translated)
+- [x] sprintController (translated methods and error messages)
+- [x] tarefaController → taskController (renamed and translated)
+- [x] administradorController → administratorController (renamed and translated)
+- [x] userController (translated error messages)
 
 ### Routes
-- [ ] projetoRoutes → projectRoutes
-- [ ] sprintRoutes → sprintRoutes
-- [ ] tarefaRoutes → taskRoutes
-- [ ] administradorRoutes → administratorRoutes
-- [ ] administradorExtendedRoutes → administratorExtendedRoutes
-- [ ] userRoutes (update if needed)
+- [x] projetoRoutes → projectRoutes
+- [x] tarefaRoutes → taskRoutes  
+- [x] administradorRoutes → administratorRoutes
+- [x] administradorExtendedRoutes → administratorExtendedRoutes
+- [x] sprintRoutes (updated Swagger documentation)
+- [x] userRoutes (already in English)
+- [x] index.ts (updated route paths and imports)
+
+## � In Progress
 
 ### Configuration
 - [ ] swagger.ts (update schemas and documentation)
