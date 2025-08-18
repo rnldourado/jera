@@ -1,21 +1,21 @@
 import { SprintRepository } from "../repositories/sprintRepository";
 
 export interface CreateSprintDTO {
-  nome: string;
-  descricao: string;
-  dataInicio: Date;
-  dataFim: Date;
+  name: string;
+  description: string;
+  startDate: Date;
+  endDate: Date;
   status: "planning" | "in_progress" | "ended";
-  projetoId: number;
+  projectId: number;
 }
 
 export interface UpdateSprintDTO {
-  nome?: string;
-  descricao?: string;
-  dataInicio?: Date;
-  dataFim?: Date;
+  name?: string;
+  description?: string;
+  startDate?: Date;
+  endDate?: Date;
   status?: "planning" | "in_progress" | "ended";
-  projetoId?: number;
+  projectId?: number;
 }
 
 export class SprintService {
@@ -27,25 +27,25 @@ export class SprintService {
 
   async createSprint(data: CreateSprintDTO) {
     try {
-      if (!data.nome || data.nome.trim().length === 0) {
-        throw new Error("Nome da sprint é obrigatório");
+      if (!data.name || data.name.trim().length === 0) {
+        throw new Error("Sprint name is required");
       }
 
-      if (!data.descricao || data.descricao.trim().length === 0) {
-        throw new Error("Descrição da sprint é obrigatória");
+      if (!data.description || data.description.trim().length === 0) {
+        throw new Error("Sprint description is required");
       }
 
-      if (new Date(data.dataInicio) > new Date(data.dataFim)) {
-        throw new Error("Data de início não pode ser posterior à data de fim");
+      if (new Date(data.startDate) > new Date(data.endDate)) {
+        throw new Error("Start date cannot be after end date");
       }
 
       const sprint = await this.sprintRepository.createSprint(
-        data.nome,
-        data.descricao,
-        data.dataInicio,
-        data.dataFim,
+        data.name,
+        data.description,
+        data.startDate,
+        data.endDate,
         data.status,
-        data.projetoId
+        data.projectId
       );
 
       return sprint;
@@ -61,36 +61,40 @@ export class SprintService {
       throw error;
     }
   }
-    async getSprintById(id: number) {
-        try {
-        return await this.sprintRepository.getSprintById(id);
-        } catch (error) {
-        throw error;
-        }
-    }
-    async updateSprint(id: number, data: UpdateSprintDTO) {
-        try {
-            if (!id || id <= 0) {
-                throw new Error("ID da sprint inválido");
-            }
 
-            const updatedSprint = await this.sprintRepository.updateSprint(id, data);
-            return updatedSprint;
-        } catch (error) {
-            throw error;
-        }
+  async getSprintById(id: number) {
+    try {
+      return await this.sprintRepository.getSprintById(id);
+    } catch (error) {
+      throw error;
     }
-    async deleteSprint(id: number) {
-        try {
-            if (!id || id <= 0) {
-                throw new Error("ID da sprint inválido");
-            }
+  }
 
-            const result = await this.sprintRepository.deleteSprint(id);
-            return result;
-        } catch (error) {
-            throw error;
-        }
+  async updateSprint(id: number, data: UpdateSprintDTO) {
+    try {
+      if (!id || id <= 0) {
+        throw new Error("Invalid sprint ID");
+      }
+
+      const updatedSprint = await this.sprintRepository.updateSprint(id, data);
+      return updatedSprint;
+    } catch (error) {
+      throw error;
     }
+  }
+
+  async deleteSprint(id: number) {
+    try {
+      if (!id || id <= 0) {
+        throw new Error("Invalid sprint ID");
+      }
+
+      const result = await this.sprintRepository.deleteSprint(id);
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
+
 export default SprintService;

@@ -15,7 +15,7 @@ export class UserController {
       res.status(201).json(user);
     } catch (error: any) {
       res.status(400).json({ 
-        message: "Erro ao criar o usuário", 
+        message: "Error creating user", 
         error: error.message 
       });
     }
@@ -27,7 +27,7 @@ export class UserController {
       res.json(users);
     } catch (error: any) {
       res.status(500).json({ 
-        message: "Erro ao obter os usuários", 
+        message: "Error fetching users", 
         error: error.message 
       });
     }
@@ -39,11 +39,11 @@ export class UserController {
       const user = await this.userService.getUserById(id);
       res.json(user);
     } catch (error: any) {
-      if (error.message === "Usuário não encontrado" || error.message === "ID do usuário inválido") {
+      if (error.message === "User not found" || error.message === "Invalid user ID") {
         res.status(404).json({ message: error.message });
       } else {
         res.status(500).json({ 
-          message: "Erro ao obter o usuário", 
+          message: "Error fetching user", 
           error: error.message 
         });
       }
@@ -57,11 +57,11 @@ export class UserController {
       const user = await this.userService.updateUser(id, data);
       res.json(user);
     } catch (error: any) {
-      if (error.message === "Usuário não encontrado" || error.message === "ID do usuário inválido") {
+      if (error.message === "User not found" || error.message === "Invalid user ID") {
         res.status(404).json({ message: error.message });
       } else {
         res.status(400).json({ 
-          message: "Erro ao atualizar o usuário", 
+          message: "Error updating user", 
           error: error.message 
         });
       }
@@ -74,11 +74,11 @@ export class UserController {
       const result = await this.userService.deleteUser(id);
       res.status(204).json(result);
     } catch (error: any) {
-      if (error.message === "Usuário não encontrado" || error.message === "ID do usuário inválido") {
+      if (error.message === "User not found" || error.message === "Invalid user ID") {
         res.status(404).json({ message: error.message });
       } else {
         res.status(500).json({ 
-          message: "Erro ao deletar o usuário", 
+          message: "Error deleting user", 
           error: error.message 
         });
       }

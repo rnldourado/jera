@@ -8,7 +8,7 @@ const sprintController = new SprintController();
  * @swagger
  * /sprints:
  *   post:
- *     summary: Criar uma nova sprint
+ *     summary: Create a new sprint
  *     tags: [Sprints]
  *     requestBody:
  *       required: true
@@ -18,7 +18,7 @@ const sprintController = new SprintController();
  *             $ref: '#/components/schemas/SprintInput'
  *     responses:
  *       201:
- *         description: Sprint criada com sucesso
+ *         description: Sprint created successfully
  *         content:
  *           application/json:
  *             schema:

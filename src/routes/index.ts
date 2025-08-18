@@ -1,34 +1,34 @@
 import { Router } from "express";
 import userRoutes from "./userRoutes";
-import projetoRoutes from "./projetoRoutes";
+import projectRoutes from "./projectRoutes";
 import sprintRoutes from "./sprintRoutes";
-import tarefaRoutes from "./tarefaRoutes";
-import administradorRoutes from "./administradorRoutes";
-import administradorExtendedRoutes from "./administradorExtendedRoutes";
+import taskRoutes from "./taskRoutes";
+import administratorRoutes from "./administratorRoutes";
+import administratorExtendedRoutes from "./administratorExtendedRoutes";
 
 /**
  * @swagger
  * tags:
  *   - name: Users
- *     description: Operações relacionadas aos usuários
- *   - name: Projetos
- *     description: Operações relacionadas aos projetos
+ *     description: User-related operations
+ *   - name: Projects
+ *     description: Project-related operations
  *   - name: Sprints
- *     description: Operações relacionadas às sprints
- *   - name: Tarefas
- *     description: Operações relacionadas às tarefas
- *   - name: Administradores
- *     description: Operações relacionadas aos administradores
+ *     description: Sprint-related operations
+ *   - name: Tasks
+ *     description: Task-related operations
+ *   - name: Administrators
+ *     description: Administrator-related operations
  */
 
 const router = Router();
 
-// Registrar todas as rotas
+// Register all routes
 router.use("/users", userRoutes);
-router.use("/projetos", projetoRoutes);
+router.use("/projects", projectRoutes);
 router.use("/sprints", sprintRoutes);
-router.use("/tarefas", tarefaRoutes);
-router.use("/administradores", administradorRoutes);
-router.use("/administradores", administradorExtendedRoutes);
+router.use("/tasks", taskRoutes);
+router.use("/administrators", administratorRoutes);
+router.use("/administrators", administratorExtendedRoutes);
 
 export default router;

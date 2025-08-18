@@ -1,40 +1,40 @@
 import { Model, DataTypes, Optional } from "sequelize";
 import sequelize from "../config/database";
 
-interface ProjetoCreationAttributes extends Optional<ProjetoAttributes, "id"> { }
+interface ProjectCreationAttributes extends Optional<ProjectAttributes, "id"> { }
 
-interface ProjetoAttributes {
+interface ProjectAttributes {
   id: number;
-  nome: string;
-  descricao: string;
+  name: string;
+  description: string;
   status: "to do" | "in progress" | "done";
-  dataInicio: Date;
-  prazo: Date;
-  criadorId: number;
+  startDate: Date;
+  deadline: Date;
+  creatorId: number;
 }
 
-export class Projeto extends Model<ProjetoAttributes, ProjetoCreationAttributes> implements ProjetoAttributes {
+export class Project extends Model<ProjectAttributes, ProjectCreationAttributes> implements ProjectAttributes {
   public id!: number;
-  public nome!: string;
-  public descricao!: string;
+  public name!: string;
+  public description!: string;
   public status!: "to do" | "in progress" | "done";
-  public dataInicio!: Date;
-  public prazo!: Date;
-  public criadorId!: number;
+  public startDate!: Date;
+  public deadline!: Date;
+  public creatorId!: number;
 }
 
-Projeto.init(
+Project.init(
   {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
     },
-    nome: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    descricao: {
+    description: {
       type: DataTypes.STRING,
       allowNull: true,
     },
@@ -42,15 +42,15 @@ Projeto.init(
       type: DataTypes.ENUM("to do", "in progress", "done"),
       allowNull: false,
     },
-    dataInicio: {
+    startDate: {
       type: DataTypes.DATE,
       allowNull: false,
     },
-    prazo: {
+    deadline: {
       type: DataTypes.DATE,
       allowNull: false,
     },
-    criadorId: {
+    creatorId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
@@ -61,7 +61,7 @@ Projeto.init(
   },
   {
     sequelize,
-    tableName: "projetos",
+    tableName: "projects",
     timestamps: false,
   }
 );

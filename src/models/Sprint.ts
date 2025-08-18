@@ -1,26 +1,26 @@
 import { Optional, Model, DataTypes } from "sequelize";
 import sequelize from "../config/database";
 
-interface SprintCreationAttributes extends Optional<SprintAtributes, "id"> { }
+interface SprintCreationAttributes extends Optional<SprintAttributes, "id"> { }
 
-interface SprintAtributes {
+interface SprintAttributes {
     id: number;
-    nome: string;
-    descricao: string;
-    dataInicio: Date;
-    dataFim: Date;
+    name: string;
+    description: string;
+    startDate: Date;
+    endDate: Date;
     status: "planning" | "in_progress" | "ended";
-    projetoId: number;
+    projectId: number;
 }
 
-export class Sprint extends Model<SprintAtributes, SprintCreationAttributes> implements SprintAtributes {
+export class Sprint extends Model<SprintAttributes, SprintCreationAttributes> implements SprintAttributes {
     public id!: number;
-    public nome!: string;
-    public descricao!: string;
-    public dataInicio!: Date;
-    public dataFim!: Date;
+    public name!: string;
+    public description!: string;
+    public startDate!: Date;
+    public endDate!: Date;
     public status!: "planning" | "in_progress" | "ended";
-    public projetoId!: number;
+    public projectId!: number;
 }
 
 Sprint.init(
@@ -30,19 +30,19 @@ Sprint.init(
             autoIncrement: true,
             primaryKey: true,
         },
-        nome: {
+        name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        descricao: {
+        description: {
             type: DataTypes.STRING,
             allowNull: true,
         },
-        dataInicio: {
+        startDate: {
             type: DataTypes.DATE,
             allowNull: false,
         },
-        dataFim: {
+        endDate: {
             type: DataTypes.DATE,
             allowNull: false,
         },
@@ -50,11 +50,11 @@ Sprint.init(
             type: DataTypes.ENUM("planning", "in_progress", "ended"),
             allowNull: false,
         },
-        projetoId: {
+        projectId: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: "projetos",
+                model: "projects",
                 key: "id",
             },
         },
