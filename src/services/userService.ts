@@ -2,17 +2,22 @@ import { UserRepository } from "../repositories/userRepository";
 
 export interface CreateUserDTO {
   name: string;
+  username: string;
   email: string;
   password: string;
 }
 
 export interface UpdateUserDTO {
   name?: string;
+  username?: string;
   email?: string;
   password?: string;
 }
 
 export class UserService {
+  static getUserByUsername(username: any) {
+      throw new Error('Method not implemented.');
+  }
   private userRepository: UserRepository;
 
   constructor() {
@@ -23,6 +28,10 @@ export class UserService {
     try {
       if (!data.name || data.name.trim().length === 0) {
         throw new Error("Nome do usuário é obrigatório");
+      }
+
+      if (!data.username || data.username.trim().length === 0) {
+        throw new Error("Nome de usuário é obrigatório");
       }
 
       if (!data.email || data.email.trim().length === 0) {
@@ -40,6 +49,7 @@ export class UserService {
 
       const user = await this.userRepository.createUser(
         data.name,
+        data.username,
         data.email,
         data.password
       );
@@ -65,7 +75,25 @@ export class UserService {
       }
 
       const user = await this.userRepository.getUserById(id);
-      
+
+      if (!user) {
+        throw new Error("Usuário não encontrado");
+      }
+
+      return user;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async getUserByUsername(username: string) {
+    try {
+      if (!username || username.trim().length === 0) {
+        throw new Error("Nome de usuário é obrigatório");
+      }
+
+      const user = await this.userRepository.getUserByUsername(username);
+
       if (!user) {
         throw new Error("Usuário não encontrado");
       }
@@ -83,7 +111,7 @@ export class UserService {
       }
 
       const user = await this.userRepository.getUserById(id);
-      
+
       if (!user) {
         throw new Error("Usuário não encontrado");
       }
@@ -92,11 +120,15 @@ export class UserService {
         throw new Error("Nome do usuário não pode estar vazio");
       }
 
+      if (data.username !== undefined && (!data.username || data.username.trim().length === 0)) {
+        throw new Error("Nome de usuário não pode estar vazio");
+      }
+
       if (data.email !== undefined) {
         if (!data.email || data.email.trim().length === 0) {
           throw new Error("Email do usuário não pode estar vazio");
         }
-        
+
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(data.email)) {
           throw new Error("Email inválido");
@@ -108,6 +140,7 @@ export class UserService {
       }
 
       if (data.name !== undefined) user.name = data.name;
+      if (data.username !== undefined) user.username = data.username;
       if (data.email !== undefined) user.email = data.email;
       if (data.password !== undefined) user.password = data.password;
 
@@ -125,7 +158,7 @@ export class UserService {
       }
 
       const user = await this.userRepository.getUserById(id);
-      
+
       if (!user) {
         throw new Error("Usuário não encontrado");
       }
