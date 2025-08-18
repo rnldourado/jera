@@ -7,12 +7,12 @@ const options = {
     info: {
       title: 'Jera API',
       version: '1.0.0',
-      description: 'API para gerenciamento de usuários e projetos',
+      description: 'API for user and project management',
     },
     servers: [
       {
         url: 'http://localhost:3000/api',
-        description: 'Servidor de desenvolvimento',
+        description: 'Development server',
       },
     ],
     components: {
@@ -23,24 +23,24 @@ const options = {
           properties: {
             id: {
               type: 'integer',
-              description: 'ID único do usuário',
+              description: 'Unique user ID',
               example: 1,
             },
             name: {
               type: 'string',
-              description: 'Nome do usuário',
-              example: 'João Silva',
+              description: 'User name',
+              example: 'John Silva',
             },
             email: {
               type: 'string',
               format: 'email',
-              description: 'Email do usuário',
-              example: 'joao@example.com',
+              description: 'User email',
+              example: 'john@example.com',
             },
             password: {
               type: 'string',
-              description: 'Senha do usuário',
-              example: 'senha123',
+              description: 'User password',
+              example: 'password123',
             },
           },
         },
@@ -50,429 +50,429 @@ const options = {
           properties: {
             name: {
               type: 'string',
-              description: 'Nome do usuário',
-              example: 'João Silva',
+              description: 'User name',
+              example: 'John Silva',
             },
             email: {
               type: 'string',
               format: 'email',
-              description: 'Email do usuário',
-              example: 'joao@example.com',
+              description: 'User email',
+              example: 'john@example.com',
             },
             password: {
               type: 'string',
-              description: 'Senha do usuário',
-              example: 'senha123',
+              description: 'User password',
+              example: 'password123',
             },
           },
         },
-        Projeto: {
+        Project: {
           type: 'object',
-          required: ['nome', 'status', 'dataInicio', 'prazo', 'criadorId'],
+          required: ['name', 'status', 'startDate', 'deadline', 'creatorId'],
           properties: {
             id: {
               type: 'integer',
-              description: 'ID único do projeto',
+              description: 'Unique project ID',
               example: 1,
             },
-            nome: {
+            name: {
               type: 'string',
-              description: 'Nome do projeto',
-              example: 'Sistema de vendas',
+              description: 'Project name',
+              example: 'Sales System',
             },
-            descricao: {
+            description: {
               type: 'string',
-              description: 'Descrição do projeto',
-              example: 'Sistema para gerenciar vendas online',
+              description: 'Project description',
+              example: 'System for managing online sales',
             },
             status: {
               type: 'string',
               enum: ['to do', 'in progress', 'done'],
-              description: 'Status do projeto',
+              description: 'Project status',
               example: 'in progress',
             },
-            dataInicio: {
+            startDate: {
               type: 'string',
               format: 'date',
-              description: 'Data de início do projeto',
+              description: 'Project start date',
               example: '2025-01-01',
             },
-            prazo: {
+            deadline: {
               type: 'string',
               format: 'date',
-              description: 'Prazo final do projeto',
+              description: 'Project deadline',
               example: '2025-12-31',
             },
-            criadorId: {
+            creatorId: {
               type: 'integer',
-              description: 'ID do usuário criador do projeto',
+              description: 'ID of the project creator user',
               example: 1,
             },
           },
         },
-        ProjetoInput: {
+        ProjectInput: {
           type: 'object',
-          required: ['nome', 'status', 'dataInicio', 'prazo', 'criadorId'],
+          required: ['name', 'status', 'startDate', 'deadline', 'creatorId'],
           properties: {
-            nome: {
+            name: {
               type: 'string',
-              description: 'Nome do projeto',
-              example: 'Sistema de vendas',
+              description: 'Project name',
+              example: 'Sales System',
             },
-            descricao: {
+            description: {
               type: 'string',
-              description: 'Descrição do projeto',
-              example: 'Sistema para gerenciar vendas online',
+              description: 'Project description',
+              example: 'System for managing online sales',
             },
             status: {
               type: 'string',
               enum: ['to do', 'in progress', 'done'],
-              description: 'Status do projeto',
+              description: 'Project status',
               example: 'to do',
             },
-            dataInicio: {
+            startDate: {
               type: 'string',
               format: 'date',
-              description: 'Data de início do projeto',
+              description: 'Project start date',
               example: '2025-01-01',
             },
-            prazo: {
+            deadline: {
               type: 'string',
               format: 'date',
-              description: 'Prazo final do projeto',
+              description: 'Project deadline',
               example: '2025-12-31',
             },
-            criadorId: {
+            creatorId: {
               type: 'integer',
-              description: 'ID do usuário criador do projeto',
+              description: 'ID of the project creator user',
               example: 1,
             },
           },
         },
         Sprint: {
           type: 'object',
-          required: ['nome', 'descricao', 'dataInicio', 'dataFim', 'status', 'projetoId'],
+          required: ['name', 'description', 'startDate', 'endDate', 'status', 'projectId'],
           properties: {
             id: {
               type: 'integer',
-              description: 'ID único da sprint',
+              description: 'Unique sprint ID',
               example: 1,
             },
-            nome: {
+            name: {
               type: 'string',
-              description: 'Nome da sprint',
+              description: 'Sprint name',
               example: 'Sprint 1 - Login',
             },
-            descricao: {
+            description: {
               type: 'string',
-              description: 'Descrição da sprint',
-              example: 'Implementação do sistema de login e autenticação',
+              description: 'Sprint description',
+              example: 'Implementation of login and authentication system',
             },
-            dataInicio: {
+            startDate: {
               type: 'string',
               format: 'date',
-              description: 'Data de início da sprint',
+              description: 'Sprint start date',
               example: '2025-01-01',
             },
-            dataFim: {
+            endDate: {
               type: 'string',
               format: 'date',
-              description: 'Data de fim da sprint',
+              description: 'Sprint end date',
               example: '2025-01-15',
             },
             status: {
               type: 'string',
               enum: ['planning', 'in_progress', 'ended'],
-              description: 'Status da sprint',
+              description: 'Sprint status',
               example: 'planning',
             },
-            projetoId: {
+            projectId: {
               type: 'integer',
-              description: 'ID do projeto ao qual a sprint pertence',
+              description: 'ID of the project this sprint belongs to',
               example: 1,
             },
           },
         },
         SprintInput: {
           type: 'object',
-          required: ['nome', 'descricao', 'dataInicio', 'dataFim', 'status', 'projetoId'],
+          required: ['name', 'description', 'startDate', 'endDate', 'status', 'projectId'],
           properties: {
-            nome: {
+            name: {
               type: 'string',
-              description: 'Nome da sprint',
+              description: 'Sprint name',
               example: 'Sprint 1 - Login',
             },
-            descricao: {
+            description: {
               type: 'string',
-              description: 'Descrição da sprint',
-              example: 'Implementação do sistema de login e autenticação',
+              description: 'Sprint description',
+              example: 'Implementation of login and authentication system',
             },
-            dataInicio: {
+            startDate: {
               type: 'string',
               format: 'date',
-              description: 'Data de início da sprint',
+              description: 'Sprint start date',
               example: '2025-01-01',
             },
-            dataFim: {
+            endDate: {
               type: 'string',
               format: 'date',
-              description: 'Data de fim da sprint',
+              description: 'Sprint end date',
               example: '2025-01-15',
             },
             status: {
               type: 'string',
               enum: ['planning', 'in_progress', 'ended'],
-              description: 'Status da sprint',
+              description: 'Sprint status',
               example: 'planning',
             },
-            projetoId: {
+            projectId: {
               type: 'integer',
-              description: 'ID do projeto ao qual a sprint pertence',
+              description: 'ID of the project this sprint belongs to',
               example: 1,
             },
           },
         },
-        Tarefa: {
+        Task: {
           type: 'object',
-          required: ['nome', 'descricao', 'status', 'prioridade', 'dataCriacao', 'responsavelId', 'sprintId', 'projetoId'],
+          required: ['name', 'description', 'status', 'priority', 'createdAt', 'assigneeId', 'sprintId', 'projectId'],
           properties: {
             id: {
               type: 'integer',
-              description: 'ID único da tarefa',
+              description: 'Unique task ID',
               example: 1,
             },
-            nome: {
+            name: {
               type: 'string',
-              description: 'Nome da tarefa',
-              example: 'Implementar tela de login',
+              description: 'Task name',
+              example: 'Implement login screen',
             },
-            descricao: {
+            description: {
               type: 'string',
-              description: 'Descrição detalhada da tarefa',
-              example: 'Criar formulário de login com validação de email e senha',
+              description: 'Detailed task description',
+              example: 'Create login form with email and password validation',
             },
             status: {
               type: 'string',
               enum: ['to do', 'in progress', 'done'],
-              description: 'Status atual da tarefa',
+              description: 'Current task status',
               example: 'to do',
             },
-            prioridade: {
+            priority: {
               type: 'string',
               enum: ['low', 'medium', 'high'],
-              description: 'Prioridade da tarefa',
+              description: 'Task priority',
               example: 'high',
             },
-            dataCriacao: {
+            createdAt: {
               type: 'string',
               format: 'date-time',
-              description: 'Data e hora de criação da tarefa',
+              description: 'Task creation date and time',
               example: '2025-01-01T10:00:00Z',
             },
-            dataConclusao: {
+            completedAt: {
               type: 'string',
               format: 'date-time',
-              description: 'Data e hora de conclusão da tarefa (opcional)',
+              description: 'Task completion date and time (optional)',
               example: '2025-01-05T15:30:00Z',
             },
-            responsavelId: {
+            assigneeId: {
               type: 'integer',
-              description: 'ID do usuário responsável pela tarefa',
+              description: 'ID of the user responsible for the task',
               example: 1,
             },
             sprintId: {
               type: 'integer',
-              description: 'ID da sprint à qual a tarefa pertence',
+              description: 'ID of the sprint this task belongs to',
               example: 1,
             },
-            projetoId: {
+            projectId: {
               type: 'integer',
-              description: 'ID do projeto ao qual a tarefa pertence',
+              description: 'ID of the project this task belongs to',
               example: 1,
             },
           },
         },
-        TarefaInput: {
+        TaskInput: {
           type: 'object',
-          required: ['nome', 'descricao', 'status', 'prioridade', 'responsavelId', 'sprintId', 'projetoId'],
+          required: ['name', 'description', 'status', 'priority', 'assigneeId', 'sprintId', 'projectId'],
           properties: {
-            nome: {
+            name: {
               type: 'string',
-              description: 'Nome da tarefa',
-              example: 'Implementar tela de login',
+              description: 'Task name',
+              example: 'Implement login screen',
             },
-            descricao: {
+            description: {
               type: 'string',
-              description: 'Descrição detalhada da tarefa',
-              example: 'Criar formulário de login com validação de email e senha',
+              description: 'Detailed task description',
+              example: 'Create login form with email and password validation',
             },
             status: {
               type: 'string',
               enum: ['to do', 'in progress', 'done'],
-              description: 'Status inicial da tarefa',
+              description: 'Initial task status',
               example: 'to do',
             },
-            prioridade: {
+            priority: {
               type: 'string',
               enum: ['low', 'medium', 'high'],
-              description: 'Prioridade da tarefa',
+              description: 'Task priority',
               example: 'high',
             },
-            responsavelId: {
+            assigneeId: {
               type: 'integer',
-              description: 'ID do usuário responsável pela tarefa',
+              description: 'ID of the user responsible for the task',
               example: 1,
             },
             sprintId: {
               type: 'integer',
-              description: 'ID da sprint à qual a tarefa pertence',
+              description: 'ID of the sprint this task belongs to',
               example: 1,
             },
-            projetoId: {
+            projectId: {
               type: 'integer',
-              description: 'ID do projeto ao qual a tarefa pertence',
+              description: 'ID of the project this task belongs to',
               example: 1,
             },
           },
         },
-        TarefaUpdateInput: {
+        TaskUpdateInput: {
           type: 'object',
           properties: {
-            nome: {
+            name: {
               type: 'string',
-              description: 'Nome da tarefa',
-              example: 'Implementar tela de login atualizada',
+              description: 'Task name',
+              example: 'Updated login screen implementation',
             },
-            descricao: {
+            description: {
               type: 'string',
-              description: 'Descrição detalhada da tarefa',
-              example: 'Criar formulário de login com validação aprimorada',
+              description: 'Detailed task description',
+              example: 'Create login form with enhanced validation',
             },
             status: {
               type: 'string',
               enum: ['to do', 'in progress', 'done'],
-              description: 'Novo status da tarefa',
+              description: 'New task status',
               example: 'in progress',
             },
-            prioridade: {
+            priority: {
               type: 'string',
               enum: ['low', 'medium', 'high'],
-              description: 'Nova prioridade da tarefa',
+              description: 'New task priority',
               example: 'medium',
             },
-            responsavelId: {
+            assigneeId: {
               type: 'integer',
-              description: 'Novo ID do usuário responsável',
+              description: 'New ID of the responsible user',
               example: 2,
             },
             sprintId: {
               type: 'integer',
-              description: 'Novo ID da sprint',
+              description: 'New sprint ID',
               example: 2,
             },
-            projetoId: {
+            projectId: {
               type: 'integer',
-              description: 'Novo ID do projeto',
+              description: 'New project ID',
               example: 1,
             },
           },
         },
-        Administrador: {
+        Administrator: {
           type: 'object',
-          required: ['userId', 'nivel'],
+          required: ['userId', 'level'],
           properties: {
             id: {
               type: 'integer',
-              description: 'ID único do administrador',
+              description: 'Unique administrator ID',
               example: 1,
             },
             userId: {
               type: 'integer',
-              description: 'ID do usuário associado',
+              description: 'Associated user ID',
               example: 1,
             },
-            nivel: {
+            level: {
               type: 'string',
-              enum: ['super', 'moderador', 'suporte'],
-              description: 'Nível de acesso do administrador',
-              example: 'moderador',
+              enum: ['super', 'moderator', 'support'],
+              description: 'Administrator access level',
+              example: 'moderator',
             },
-            permissoes: {
+            permissions: {
               type: 'array',
               items: {
                 type: 'string',
               },
-              description: 'Lista de permissões específicas',
-              example: ['gerenciar_usuarios', 'visualizar_relatorios'],
+              description: 'List of specific permissions',
+              example: ['manage_users', 'view_reports'],
             },
-            ativo: {
+            active: {
               type: 'boolean',
-              description: 'Se o administrador está ativo',
+              description: 'Whether the administrator is active',
               example: true,
             },
-            dataCriacao: {
+            createdAt: {
               type: 'string',
               format: 'date-time',
-              description: 'Data de criação do administrador',
+              description: 'Administrator creation date',
               example: '2025-01-20T10:00:00.000Z',
             },
-            dataAtualizacao: {
+            updatedAt: {
               type: 'string',
               format: 'date-time',
-              description: 'Data da última atualização',
+              description: 'Last update date',
               example: '2025-01-20T15:30:00.000Z',
             },
             user: {
               $ref: '#/components/schemas/User',
-              description: 'Dados do usuário associado',
+              description: 'Associated user data',
             },
           },
         },
-        AdministradorInput: {
+        AdministratorInput: {
           type: 'object',
-          required: ['userId', 'nivel'],
+          required: ['userId', 'level'],
           properties: {
             userId: {
               type: 'integer',
-              description: 'ID do usuário que será administrador',
+              description: 'ID of the user who will be administrator',
               example: 1,
             },
-            nivel: {
+            level: {
               type: 'string',
-              enum: ['super', 'moderador', 'suporte'],
-              description: 'Nível de acesso do administrador',
-              example: 'moderador',
+              enum: ['super', 'moderator', 'support'],
+              description: 'Administrator access level',
+              example: 'moderator',
             },
-            permissoes: {
+            permissions: {
               type: 'array',
               items: {
                 type: 'string',
               },
-              description: 'Lista de permissões específicas (opcional)',
-              example: ['gerenciar_usuarios', 'visualizar_relatorios'],
+              description: 'List of specific permissions (optional)',
+              example: ['manage_users', 'view_reports'],
             },
           },
         },
-        AdministradorUpdateInput: {
+        AdministratorUpdateInput: {
           type: 'object',
           properties: {
-            nivel: {
+            level: {
               type: 'string',
-              enum: ['super', 'moderador', 'suporte'],
-              description: 'Nível de acesso do administrador',
-              example: 'moderador',
+              enum: ['super', 'moderator', 'support'],
+              description: 'Administrator access level',
+              example: 'moderator',
             },
-            permissoes: {
+            permissions: {
               type: 'array',
               items: {
                 type: 'string',
               },
-              description: 'Lista de permissões específicas',
-              example: ['gerenciar_usuarios', 'visualizar_relatorios'],
+              description: 'List of specific permissions',
+              example: ['manage_users', 'view_reports'],
             },
-            ativo: {
+            active: {
               type: 'boolean',
-              description: 'Se o administrador está ativo',
+              description: 'Whether the administrator is active',
               example: true,
             },
           },
@@ -482,20 +482,20 @@ const options = {
           properties: {
             message: {
               type: 'string',
-              description: 'Mensagem de erro',
-              example: 'Recurso não encontrado',
+              description: 'Error message',
+              example: 'Resource not found',
             },
             error: {
               type: 'string',
-              description: 'Detalhes do erro',
-              example: 'Usuário com ID 999 não existe',
+              description: 'Error details',
+              example: 'User with ID 999 does not exist',
             },
           },
         },
       },
     },
   },
-  apis: ['./src/routes/*.ts'], // Caminho para os arquivos de rotas
+  apis: ['./src/routes/*.ts'], // Path to route files
 };
 
 const specs = swaggerJsdoc(options);
