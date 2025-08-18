@@ -15,7 +15,7 @@ export class SprintController {
       res.status(201).json(sprint);
     } catch (error: any) {
       res.status(400).json({ 
-        message: "Erro ao criar a sprint", 
+        message: "Error creating sprint", 
         error: error.message 
       });
     }
@@ -27,7 +27,7 @@ export class SprintController {
       res.json(sprints);
     } catch (error: any) {
       res.status(500).json({ 
-        message: "Erro ao obter as sprints", 
+        message: "Error fetching sprints", 
         error: error.message 
       });
     }
@@ -39,17 +39,17 @@ export class SprintController {
       const sprint = await this.sprintService.getSprintById(id);
       
       if (!sprint) {
-        res.status(404).json({ message: "Sprint não encontrada" });
+        res.status(404).json({ message: "Sprint not found" });
         return;
       }
       
       res.json(sprint);
     } catch (error: any) {
-      if (error.message === "Sprint não encontrada" || error.message === "ID da sprint inválido") {
+      if (error.message === "Sprint not found" || error.message === "Invalid sprint ID") {
         res.status(404).json({ message: error.message });
       } else {
-        res.status(500).json({ 
-          message: "Erro ao obter a sprint", 
+        res.status(500).json({
+          message: "Error fetching sprint", 
           error: error.message 
         });
       }
@@ -63,11 +63,11 @@ export class SprintController {
       const sprint = await this.sprintService.updateSprint(id, data);
       res.json(sprint);
     } catch (error: any) {
-      if (error.message === "Sprint não encontrada" || error.message === "ID da sprint inválido") {
+      if (error.message === "Sprint not found" || error.message === "Invalid sprint ID") {
         res.status(404).json({ message: error.message });
       } else {
         res.status(400).json({ 
-          message: "Erro ao atualizar a sprint", 
+          message: "Error updating sprint", 
           error: error.message 
         });
       }
@@ -80,11 +80,11 @@ export class SprintController {
       const result = await this.sprintService.deleteSprint(id);
       res.json(result);
     } catch (error: any) {
-      if (error.message === "Sprint não encontrada" || error.message === "ID da sprint inválido") {
+      if (error.message === "Sprint not found" || error.message === "Invalid sprint ID") {
         res.status(404).json({ message: error.message });
       } else {
         res.status(500).json({ 
-          message: "Erro ao deletar a sprint", 
+          message: "Error deleting sprint", 
           error: error.message 
         });
       }
