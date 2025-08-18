@@ -4,20 +4,20 @@ import { UpdateSprintDTO } from "../services/sprintService";
 export class SprintRepository {
     
     async createSprint(
-        nome: string,
-        descricao: string,
-        dataInicio: Date,
-        dataFim: Date,
+        name: string,
+        description: string,
+        startDate: Date,
+        endDate: Date,
         status: "planning" | "in_progress" | "ended",
-        projetoId: number
+        projectId: number
     ) {
         return await Sprint.create({
-            nome,
-            descricao,
-            dataInicio,
-            dataFim,
+            name,
+            description,
+            startDate,
+            endDate,
             status,
-            projetoId
+            projectId
         });
     }
     
@@ -32,7 +32,7 @@ export class SprintRepository {
     async updateSprint(id: number, data: UpdateSprintDTO) {
         const sprint = await Sprint.findByPk(id);
         if (!sprint) {
-            throw new Error("Sprint não encontrada");
+            throw new Error("Sprint not found");
         }
         
         await sprint.update(data);
@@ -42,10 +42,10 @@ export class SprintRepository {
     async deleteSprint(id: number) {
         const sprint = await Sprint.findByPk(id);
         if (!sprint) {
-            throw new Error("Sprint não encontrada");
+            throw new Error("Sprint not found");
         }
         
         await sprint.destroy();
-        return { message: "Sprint deletada com sucesso" };
+        return { message: "Sprint deleted successfully" };
     }
 }
