@@ -4,8 +4,8 @@ export class UserRepository {
   async createUser(name: string, email: string, username: string, password: string) {
     return await User.create({
       name,
-      email,
       username,
+      email,
       password
     });
   }
@@ -20,7 +20,7 @@ export class UserRepository {
 
   async getUserByUsername(username: string) {
     return await User.findOne({
-      where: { username }
+      where: { username: username }
     });
   }
 }

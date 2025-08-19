@@ -46,8 +46,8 @@ export class UserService {
 
       const user = await this.userRepository.createUser(
         data.name,
-        data.username,
         data.email,
+        data.username,
         data.password
       );
 
@@ -88,7 +88,7 @@ export class UserService {
       if (!username || username.trim().length === 0) {
         throw new Error("Nome de usuário é obrigatório");
       }
-
+      console.log("service: "+username);
       const user = await this.userRepository.getUserByUsername(username);
 
       if (!user) {
