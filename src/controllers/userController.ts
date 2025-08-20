@@ -11,7 +11,8 @@ export class UserController {
   createUser = async (req: Request, res: Response) => {
     try {
       const data: CreateUserDTO = req.body;
-      const user = await this.userService.createUser(data);
+      const user = await this.userService.createUser(data)
+      // const user = await this.userService.createUser(data);
       res.status(201).json(user);
     } catch (error: any) {
       res.status(400).json({ 

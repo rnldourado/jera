@@ -1,3 +1,4 @@
+import bcrypt from "bcryptjs";
 import { UserRepository } from "../repositories/userRepository";
 
 export interface CreateUserDTO {
@@ -5,6 +6,13 @@ export interface CreateUserDTO {
   username: string;
   email: string;
   password: string;
+}
+
+export interface GetUserDTO {
+  id: number;
+  name: string;
+  username: string;
+  email: string;
 }
 
 export interface UpdateUserDTO {
@@ -21,7 +29,7 @@ export class UserService {
     this.userRepository = new UserRepository();
   }
 
-  async createUser(data: CreateUserDTO) {
+  async createUser(data: CreateUserDTO): Promise<GetUserDTO> {
     try {
       if (!data.name || data.name.trim().length === 0) {
         throw new Error("Nome do usuário é obrigatório");
@@ -44,22 +52,34 @@ export class UserService {
         throw new Error("Email inválido");
       }
 
+      const hashedPassword = await bcrypt.hash(data.password, 10);
+      const userWithHashedPassword = { ...data, password: hashedPassword };
+
       const user = await this.userRepository.createUser(
-        data.name,
-        data.email,
-        data.username,
-        data.password
+        userWithHashedPassword.name,
+        userWithHashedPassword.email,
+        userWithHashedPassword.username,
+        userWithHashedPassword.password
       );
 
-      return user;
+      const userDTO: GetUserDTO = { id: user.id, name: user.name, email: user.email, username: user.username };
+
+      return userDTO;
     } catch (error) {
       throw error;
     }
   }
 
-  async getAllUsers() {
+  async getAllUsers(): Promise<GetUserDTO[]> {
     try {
-      return await this.userRepository.getAllUsers();
+      const users = await this.userRepository.getAllUsers();
+      
+      return users.map(user => ({
+        id: user.id,
+        name: user.name,
+        username: user.username,
+        email: user.email
+      }));
     } catch (error) {
       throw error;
     }
@@ -88,7 +108,6 @@ export class UserService {
       if (!username || username.trim().length === 0) {
         throw new Error("Nome de usuário é obrigatório");
       }
-      console.log("service: "+username);
       const user = await this.userRepository.getUserByUsername(username);
 
       if (!user) {
