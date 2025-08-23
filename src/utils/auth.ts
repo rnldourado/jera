@@ -28,6 +28,13 @@ export const generateToken = (userId: number, username: string): string => {
 
 // Função para verificar um token JWT
 
-export const verifyToken = (token: string): any => {
-  return jwt.verify(token, JWT_SECRET);
+interface DecodedTokenPayload {
+  id: number;
+  username: string;
+  iat: number;
+  exp: number;
+}
+
+export const verifyToken = (token: string): DecodedTokenPayload => {
+  return jwt.verify(token, JWT_SECRET) as DecodedTokenPayload;
 };
