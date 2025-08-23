@@ -1,13 +1,23 @@
+import bcrypt from "bcryptjs";
 import { UserRepository } from "../repositories/userRepository";
 
 export interface CreateUserDTO {
   name: string;
+  username: string;
   email: string;
   password: string;
 }
 
+export interface GetUserDTO {
+  id: number;
+  name: string;
+  username: string;
+  email: string;
+}
+
 export interface UpdateUserDTO {
   name?: string;
+  username?: string;
   email?: string;
   password?: string;
 }
@@ -19,10 +29,14 @@ export class UserService {
     this.userRepository = new UserRepository();
   }
 
-  async createUser(data: CreateUserDTO) {
+  async createUser(data: CreateUserDTO): Promise<GetUserDTO> {
     try {
       if (!data.name || data.name.trim().length === 0) {
         throw new Error("Nome do usuário é obrigatório");
+      }
+
+      if (!data.username || data.username.trim().length === 0) {
+        throw new Error("Nome de usuário é obrigatório");
       }
 
       if (!data.email || data.email.trim().length === 0) {
@@ -38,21 +52,34 @@ export class UserService {
         throw new Error("Email inválido");
       }
 
+      const hashedPassword = await bcrypt.hash(data.password, 10);
+      const userWithHashedPassword = { ...data, password: hashedPassword };
+
       const user = await this.userRepository.createUser(
-        data.name,
-        data.email,
-        data.password
+        userWithHashedPassword.name,
+        userWithHashedPassword.email,
+        userWithHashedPassword.username,
+        userWithHashedPassword.password
       );
 
-      return user;
+      const userDTO: GetUserDTO = { id: user.id, name: user.name, email: user.email, username: user.username };
+
+      return userDTO;
     } catch (error) {
       throw error;
     }
   }
 
-  async getAllUsers() {
+  async getAllUsers(): Promise<GetUserDTO[]> {
     try {
-      return await this.userRepository.getAllUsers();
+      const users = await this.userRepository.getAllUsers();
+      
+      return users.map(user => ({
+        id: user.id,
+        name: user.name,
+        username: user.username,
+        email: user.email
+      }));
     } catch (error) {
       throw error;
     }
@@ -65,7 +92,24 @@ export class UserService {
       }
 
       const user = await this.userRepository.getUserById(id);
-      
+
+      if (!user) {
+        throw new Error("Usuário não encontrado");
+      }
+
+      return user;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async getUserByUsername(username: string) {
+    try {
+      if (!username || username.trim().length === 0) {
+        throw new Error("Nome de usuário é obrigatório");
+      }
+      const user = await this.userRepository.getUserByUsername(username);
+
       if (!user) {
         throw new Error("Usuário não encontrado");
       }
@@ -83,7 +127,7 @@ export class UserService {
       }
 
       const user = await this.userRepository.getUserById(id);
-      
+
       if (!user) {
         throw new Error("Usuário não encontrado");
       }
@@ -92,11 +136,15 @@ export class UserService {
         throw new Error("Nome do usuário não pode estar vazio");
       }
 
+      if (data.username !== undefined && (!data.username || data.username.trim().length === 0)) {
+        throw new Error("Nome de usuário não pode estar vazio");
+      }
+
       if (data.email !== undefined) {
         if (!data.email || data.email.trim().length === 0) {
           throw new Error("Email do usuário não pode estar vazio");
         }
-        
+
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(data.email)) {
           throw new Error("Email inválido");
@@ -108,6 +156,7 @@ export class UserService {
       }
 
       if (data.name !== undefined) user.name = data.name;
+      if (data.username !== undefined) user.username = data.username;
       if (data.email !== undefined) user.email = data.email;
       if (data.password !== undefined) user.password = data.password;
 
@@ -125,7 +174,7 @@ export class UserService {
       }
 
       const user = await this.userRepository.getUserById(id);
-      
+
       if (!user) {
         throw new Error("Usuário não encontrado");
       }

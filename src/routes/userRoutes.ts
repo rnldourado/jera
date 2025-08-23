@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { UserController } from "../controllers/userController";
+import { authenticate } from "../middlewares/authMiddleware";
 
 const router = Router();
 const userController = new UserController();
@@ -60,7 +61,7 @@ router.post("/", userController.createUser);
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
-router.get("/", userController.getAllUsers);
+router.get("/", authenticate, userController.getAllUsers);
 
 /**
  * @swagger
@@ -95,7 +96,7 @@ router.get("/", userController.getAllUsers);
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
-router.get("/:id", userController.getUserById);
+router.get("/:id", authenticate, userController.getUserById);
 
 /**
  * @swagger
@@ -142,7 +143,7 @@ router.get("/:id", userController.getUserById);
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
-router.put("/:id", userController.updateUser);
+router.put("/:id", authenticate, userController.updateUser);
 
 /**
  * @swagger
@@ -181,6 +182,6 @@ router.put("/:id", userController.updateUser);
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
-router.delete("/:id", userController.deleteUser);
+router.delete("/:id", authenticate, userController.deleteUser);
 
 export default router;

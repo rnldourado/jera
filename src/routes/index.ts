@@ -5,6 +5,9 @@ import sprintRoutes from "./sprintRoutes";
 import taskRoutes from "./taskRoutes";
 import administratorRoutes from "./administratorRoutes";
 import administratorExtendedRoutes from "./administratorExtendedRoutes";
+import authRoutes from "./authRoutes";
+import { authenticate } from "../middlewares/authMiddleware";
+
 
 /**
  * @swagger
@@ -23,12 +26,12 @@ import administratorExtendedRoutes from "./administratorExtendedRoutes";
 
 const router = Router();
 
-// Register all routes
 router.use("/users", userRoutes);
-router.use("/projects", projectRoutes);
-router.use("/sprints", sprintRoutes);
-router.use("/tasks", taskRoutes);
-router.use("/administrators", administratorRoutes);
-router.use("/administrators", administratorExtendedRoutes);
+router.use("/projects", authenticate, projectRoutes);
+router.use("/sprints", authenticate, sprintRoutes);
+router.use("/tasks", authenticate, taskRoutes);
+router.use("/administrators", authenticate, administratorRoutes);
+router.use("/administrators", authenticate, administratorExtendedRoutes);
+router.use("/auth", authRoutes);
 
 export default router;
