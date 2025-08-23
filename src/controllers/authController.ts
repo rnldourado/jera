@@ -14,11 +14,13 @@ export class AuthController {
       const user = await this.userService.getUserByUsername(username);
       if (!user) {
         res.status(400).json({ message: 'Invalid username or password' });
+        return;
       }
 
       const isPasswordValid = await comparePassword(password, user.password);
       if (!isPasswordValid) {
         res.status(400).json({ message: 'Invalid username or password' });
+        return;
       }
 
       const token = generateToken(user.id, user.username);
