@@ -52,6 +52,11 @@ npm run dev
 npm run dev:nodemon
 ```
 
+### Executar Testes
+```bash
+npm test
+```
+
 ### Build para produção:
 ```bash
 npm run build
