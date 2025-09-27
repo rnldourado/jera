@@ -9,7 +9,7 @@ const userController = new UserController();
  * @swagger
  * /users:
  *   post:
- *     summary: Criar um novo usuário
+ *     summary: Create a new user
  *     tags: [Users]
  *     requestBody:
  *       required: true
@@ -19,19 +19,19 @@ const userController = new UserController();
  *             $ref: '#/components/schemas/UserInput'
  *     responses:
  *       201:
- *         description: Usuário criado com sucesso
+ *         description: User created successfully
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/User'
  *       400:
- *         description: Dados inválidos
+ *         description: Invalid data
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Error'
  *       500:
- *         description: Erro interno do servidor
+ *         description: Internal server error
  *         content:
  *           application/json:
  *             schema:
@@ -43,11 +43,11 @@ router.post("/", userController.createUser);
  * @swagger
  * /users:
  *   get:
- *     summary: Obter todos os usuários
+ *     summary: Get all users
  *     tags: [Users]
  *     responses:
  *       200:
- *         description: Lista de usuários retornada com sucesso
+ *         description: List of users returned successfully
  *         content:
  *           application/json:
  *             schema:
@@ -55,7 +55,7 @@ router.post("/", userController.createUser);
  *               items:
  *                 $ref: '#/components/schemas/User'
  *       500:
- *         description: Erro interno do servidor
+ *         description: Internal server error
  *         content:
  *           application/json:
  *             schema:
@@ -67,7 +67,7 @@ router.get("/", authenticate, userController.getAllUsers);
  * @swagger
  * /users/{id}:
  *   get:
- *     summary: Obter usuário por ID
+ *     summary: Get user by ID
  *     tags: [Users]
  *     parameters:
  *       - in: path
@@ -75,22 +75,22 @@ router.get("/", authenticate, userController.getAllUsers);
  *         required: true
  *         schema:
  *           type: integer
- *         description: ID do usuário
+ *         description: User ID
  *     responses:
  *       200:
- *         description: Usuário encontrado
+ *         description: User found
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/User'
  *       404:
- *         description: Usuário não encontrado
+ *         description: User not found
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Error'
  *       500:
- *         description: Erro interno do servidor
+ *         description: Internal server error
  *         content:
  *           application/json:
  *             schema:
@@ -102,7 +102,7 @@ router.get("/:id", authenticate, userController.getUserById);
  * @swagger
  * /users/{id}:
  *   put:
- *     summary: Atualizar usuário
+ *     summary: Update user
  *     tags: [Users]
  *     parameters:
  *       - in: path
@@ -110,7 +110,7 @@ router.get("/:id", authenticate, userController.getUserById);
  *         required: true
  *         schema:
  *           type: integer
- *         description: ID do usuário
+ *         description: User ID
  *     requestBody:
  *       required: true
  *       content:
@@ -119,25 +119,25 @@ router.get("/:id", authenticate, userController.getUserById);
  *             $ref: '#/components/schemas/UserInput'
  *     responses:
  *       200:
- *         description: Usuário atualizado com sucesso
+ *         description: User updated successfully
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/User'
  *       404:
- *         description: Usuário não encontrado
+ *         description: User not found
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Error'
  *       400:
- *         description: Dados inválidos
+ *         description: Invalid data
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Error'
  *       500:
- *         description: Erro interno do servidor
+ *         description: Internal server error
  *         content:
  *           application/json:
  *             schema:
@@ -149,7 +149,7 @@ router.put("/:id", authenticate, userController.updateUser);
  * @swagger
  * /users/{id}:
  *   delete:
- *     summary: Deletar usuário
+ *     summary: Delete user
  *     tags: [Users]
  *     parameters:
  *       - in: path
@@ -157,10 +157,10 @@ router.put("/:id", authenticate, userController.updateUser);
  *         required: true
  *         schema:
  *           type: integer
- *         description: ID do usuário
+ *         description: User ID
  *     responses:
  *       200:
- *         description: Usuário deletado com sucesso
+ *         description: User deleted successfully
  *         content:
  *           application/json:
  *             schema:
@@ -168,15 +168,15 @@ router.put("/:id", authenticate, userController.updateUser);
  *               properties:
  *                 message:
  *                   type: string
- *                   example: "Usuário deletado com sucesso"
+ *                   example: "User deleted successfully"
  *       404:
- *         description: Usuário não encontrado
+ *         description: User not found
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Error'
  *       500:
- *         description: Erro interno do servidor
+ *         description: Internal server error
  *         content:
  *           application/json:
  *             schema:

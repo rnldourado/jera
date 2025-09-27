@@ -136,34 +136,34 @@ router.get("/sprint/:sprintId", taskController.getTasksBySprint);
 
 /**
  * @swagger
- * /tarefas/projeto/{projetoId}:
+ * /tasks/project/{projectId}:
  *   get:
- *     summary: Obter tarefas por projeto
- *     tags: [Tarefas]
+ *     summary: Get tasks by project
+ *     tags: [Tasks]
  *     parameters:
  *       - in: path
- *         name: projetoId
+ *         name: projectId
  *         required: true
  *         schema:
  *           type: integer
- *         description: ID do projeto
+ *         description: Project ID
  *     responses:
  *       200:
- *         description: Lista de tarefas do projeto
+ *         description: List of project tasks
  *         content:
  *           application/json:
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Tarefa'
+ *                 $ref: '#/components/schemas/Task'
  *       400:
- *         description: ID do projeto inválido
+ *         description: Invalid project ID
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Error'
  *       500:
- *         description: Erro interno do servidor
+ *         description: Internal server error
  *         content:
  *           application/json:
  *             schema:
@@ -173,34 +173,34 @@ router.get("/project/:projectId", taskController.getTasksByProject);
 
 /**
  * @swagger
- * /tarefas/responsavel/{responsavelId}:
+ * /tasks/assignee/{assigneeId}:
  *   get:
- *     summary: Obter tarefas por responsável
- *     tags: [Tarefas]
+ *     summary: Get tasks by assignee
+ *     tags: [Tasks]
  *     parameters:
  *       - in: path
- *         name: responsavelId
+ *         name: assigneeId
  *         required: true
  *         schema:
  *           type: integer
- *         description: ID do responsável
+ *         description: Assignee ID
  *     responses:
  *       200:
- *         description: Lista de tarefas do responsável
+ *         description: List of assignee tasks
  *         content:
  *           application/json:
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Tarefa'
+ *                 $ref: '#/components/schemas/Task'
  *       400:
- *         description: ID do responsável inválido
+ *         description: Invalid assignee ID
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Error'
  *       500:
- *         description: Erro interno do servidor
+ *         description: Internal server error
  *         content:
  *           application/json:
  *             schema:
@@ -210,44 +210,44 @@ router.get("/assignee/:assigneeId", taskController.getTasksByAssignee);
 
 /**
  * @swagger
- * /tarefas/{id}:
+ * /tasks/{id}:
  *   put:
- *     summary: Atualizar tarefa
- *     tags: [Tarefas]
+ *     summary: Update task
+ *     tags: [Tasks]
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
  *         schema:
  *           type: integer
- *         description: ID da tarefa
+ *         description: Task ID
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/TarefaUpdateInput'
+ *             $ref: '#/components/schemas/TaskUpdateInput'
  *     responses:
  *       200:
- *         description: Tarefa atualizada com sucesso
+ *         description: Task updated successfully
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Tarefa'
+ *               $ref: '#/components/schemas/Task'
  *       404:
- *         description: Tarefa não encontrada
+ *         description: Task not found
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Error'
  *       400:
- *         description: Dados inválidos
+ *         description: Invalid data
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Error'
  *       500:
- *         description: Erro interno do servidor
+ *         description: Internal server error
  *         content:
  *           application/json:
  *             schema:
@@ -257,20 +257,20 @@ router.put("/:id", taskController.updateTask);
 
 /**
  * @swagger
- * /tarefas/{id}:
+ * /tasks/{id}:
  *   delete:
- *     summary: Deletar tarefa
- *     tags: [Tarefas]
+ *     summary: Delete task
+ *     tags: [Tasks]
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
  *         schema:
  *           type: integer
- *         description: ID da tarefa
+ *         description: Task ID
  *     responses:
  *       200:
- *         description: Tarefa deletada com sucesso
+ *         description: Task deleted successfully
  *         content:
  *           application/json:
  *             schema:
@@ -278,15 +278,15 @@ router.put("/:id", taskController.updateTask);
  *               properties:
  *                 message:
  *                   type: string
- *                   example: "Tarefa deletada com sucesso"
+ *                   example: "Task deleted successfully"
  *       404:
- *         description: Tarefa não encontrada
+ *         description: Task not found
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Error'
  *       500:
- *         description: Erro interno do servidor
+ *         description: Internal server error
  *         content:
  *           application/json:
  *             schema:

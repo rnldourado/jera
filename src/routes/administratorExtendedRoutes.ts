@@ -31,81 +31,81 @@ const administratorController = new AdministratorController();
  *             schema:
  *               $ref: '#/components/schemas/Error'
  *       500:
- *         description: Erro interno do servidor
+ *         description: Internal server error
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
-router.get("/usuario/:userId", (req, res) => {
+router.get("/user/:userId", (req, res) => {
     administratorController.getAdministratorByUserId(req, res);
 });
 
 /**
  * @swagger
- * /administradores/nivel/{nivel}:
+ * /administrators/level/{level}:
  *   get:
- *     summary: Obter administradores por nível
- *     tags: [Administradores]
+ *     summary: Get administrators by level
+ *     tags: [Administrators]
  *     parameters:
  *       - in: path
- *         name: nivel
+ *         name: level
  *         required: true
  *         schema:
  *           type: string
  *           enum: [super, moderador, suporte]
- *         description: Nível do administrador
+ *         description: Administrator level
  *     responses:
  *       200:
- *         description: Lista de administradores do nível especificado
+ *         description: List of administrators of the specified level
  *         content:
  *           application/json:
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Administrador'
+ *                 $ref: '#/components/schemas/Administrator'
  *       400:
- *         description: Nível inválido
+ *         description: Invalid level
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Error'
  *       500:
- *         description: Erro interno do servidor
+ *         description: Internal server error
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
-router.get("/nivel/:nivel", (req, res) => {
+router.get("/level/:nivel", (req, res) => {
     administratorController.getAdministratorsByLevel(req, res);
 });
 
 /**
  * @swagger
- * /administradores/verificar-permissao:
+ * /administrators/verify-permission:
  *   post:
- *     summary: Verificar se um usuário tem uma permissão específica
- *     tags: [Administradores]
+ *     summary: Verify if a user has a specific permission
+ *     tags: [Administrators]
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
  *             type: object
- *             required: [userId, permissao]
+ *             required: [userId, permission]
  *             properties:
  *               userId:
  *                 type: integer
- *                 description: ID do usuário
+ *                 description: User ID
  *                 example: 1
- *               permissao:
+ *               permission:
  *                 type: string
- *                 description: Nome da permissão a verificar
- *                 example: "gerenciar_usuarios"
+ *                 description: Permission name to verify
+ *                 example: "manage_users"
  *     responses:
  *       200:
- *         description: Resultado da verificação de permissão
+ *         description: Permission verification result
  *         content:
  *           application/json:
  *             schema:
@@ -113,24 +113,24 @@ router.get("/nivel/:nivel", (req, res) => {
  *               properties:
  *                 userId:
  *                   type: integer
- *                 permissao:
+ *                 permission:
  *                   type: string
- *                 temPermissao:
+ *                 hasPermission:
  *                   type: boolean
  *       400:
- *         description: Dados inválidos
+ *         description: Invalid data
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Error'
  *       500:
- *         description: Erro interno do servidor
+ *         description: Internal server error
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
-router.post("/verificar-permissao", (req, res) => {
+router.post("/verify-permission", (req, res) => {
     administratorController.checkPermission(req, res);
 });
 
