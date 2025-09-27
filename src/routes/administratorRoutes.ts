@@ -40,21 +40,21 @@ router.post("/", administratorController.createAdministrator);
 
 /**
  * @swagger
- * /administradores:
+ * /administrators:
  *   get:
- *     summary: Obter todos os administradores
- *     tags: [Administradores]
+ *     summary: Get all administrators
+ *     tags: [Administrators]
  *     responses:
  *       200:
- *         description: Lista de administradores retornada com sucesso
+ *         description: List of administrators returned successfully
  *         content:
  *           application/json:
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Administrador'
+ *                 $ref: '#/components/schemas/Administrator'
  *       500:
- *         description: Erro interno do servidor
+ *         description: Internal server error
  *         content:
  *           application/json:
  *             schema:
@@ -64,26 +64,26 @@ router.get("/", administratorController.getAllAdministrators);
 
 /**
  * @swagger
- * /administradores/permissoes:
+ * /administrators/permissions:
  *   get:
- *     summary: Obter lista de permissões disponíveis
- *     tags: [Administradores]
+ *     summary: Get list of available permissions
+ *     tags: [Administrators]
  *     responses:
  *       200:
- *         description: Lista de permissões disponíveis
+ *         description: List of available permissions
  *         content:
  *           application/json:
  *             schema:
  *               type: object
  *               properties:
- *                 permissoes:
+ *                 permissions:
  *                   type: array
  *                   items:
  *                     type: string
  *                 total:
  *                   type: integer
  *       500:
- *         description: Erro interno do servidor
+ *         description: Internal server error
  *         content:
  *           application/json:
  *             schema:
@@ -93,21 +93,21 @@ router.get("/permissions", administratorController.getAvailablePermissions);
 
 /**
  * @swagger
- * /administradores/ativos:
+ * /administrators/active:
  *   get:
- *     summary: Obter administradores ativos
- *     tags: [Administradores]
+ *     summary: Get active administrators
+ *     tags: [Administrators]
  *     responses:
  *       200:
- *         description: Lista de administradores ativos
+ *         description: List of active administrators
  *         content:
  *           application/json:
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Administrador'
+ *                 $ref: '#/components/schemas/Administrator'
  *       500:
- *         description: Erro interno do servidor
+ *         description: Internal server error
  *         content:
  *           application/json:
  *             schema:
@@ -117,32 +117,32 @@ router.get("/active", administratorController.getActiveAdministrators);
 
 /**
  * @swagger
- * /administradores/{id}:
+ * /administrators/{id}:
  *   get:
- *     summary: Obter administrador por ID
- *     tags: [Administradores]
+ *     summary: Get administrator by ID
+ *     tags: [Administrators]
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
  *         schema:
  *           type: integer
- *         description: ID do administrador
+ *         description: Administrator ID
  *     responses:
  *       200:
- *         description: Administrador encontrado
+ *         description: Administrator found
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Administrador'
+ *               $ref: '#/components/schemas/Administrator'
  *       404:
- *         description: Administrador não encontrado
+ *         description: Administrator not found
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Error'
  *       500:
- *         description: Erro interno do servidor
+ *         description: Internal server error
  *         content:
  *           application/json:
  *             schema:
@@ -152,44 +152,44 @@ router.get("/:id", administratorController.getAdministratorById);
 
 /**
  * @swagger
- * /administradores/{id}:
+ * /administrators/{id}:
  *   put:
- *     summary: Atualizar administrador
- *     tags: [Administradores]
+ *     summary: Update administrator
+ *     tags: [Administrators]
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
  *         schema:
  *           type: integer
- *         description: ID do administrador
+ *         description: Administrator ID
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/AdministradorUpdateInput'
+ *             $ref: '#/components/schemas/AdministratorUpdateInput'
  *     responses:
  *       200:
- *         description: Administrador atualizado com sucesso
+ *         description: Administrator updated successfully
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Administrador'
+ *               $ref: '#/components/schemas/Administrator'
  *       404:
- *         description: Administrador não encontrado
+ *         description: Administrator not found
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Error'
  *       400:
- *         description: Dados inválidos
+ *         description: Invalid data
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Error'
  *       500:
- *         description: Erro interno do servidor
+ *         description: Internal server error
  *         content:
  *           application/json:
  *             schema:
@@ -199,20 +199,20 @@ router.put("/:id", administratorController.updateAdministrator);
 
 /**
  * @swagger
- * /administradores/{id}/ativar:
+ * /administrators/{id}/activate:
  *   patch:
- *     summary: Ativar administrador
- *     tags: [Administradores]
+ *     summary: Activate administrator
+ *     tags: [Administrators]
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
  *         schema:
  *           type: integer
- *         description: ID do administrador
+ *         description: Administrator ID
  *     responses:
  *       200:
- *         description: Administrador ativado com sucesso
+ *         description: Administrator activated successfully
  *         content:
  *           application/json:
  *             schema:
@@ -220,17 +220,17 @@ router.put("/:id", administratorController.updateAdministrator);
  *               properties:
  *                 message:
  *                   type: string
- *                   example: "Administrador ativado com sucesso"
- *                 administrador:
- *                   $ref: '#/components/schemas/Administrador'
+ *                   example: "Administrator activated successfully"
+ *                 administrator:
+ *                   $ref: '#/components/schemas/Administrator'
  *       404:
- *         description: Administrador não encontrado
+ *         description: Administrator not found
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Error'
  *       500:
- *         description: Erro interno do servidor
+ *         description: Internal server error
  *         content:
  *           application/json:
  *             schema:
@@ -240,20 +240,20 @@ router.patch("/:id/activate", administratorController.activateAdministrator);
 
 /**
  * @swagger
- * /administradores/{id}/desativar:
+ * /administrators/{id}/deactivate:
  *   patch:
- *     summary: Desativar administrador
- *     tags: [Administradores]
+ *     summary: Deactivate administrator
+ *     tags: [Administrators]
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
  *         schema:
  *           type: integer
- *         description: ID do administrador
+ *         description: Administrator ID
  *     responses:
  *       200:
- *         description: Administrador desativado com sucesso
+ *         description: Administrator deactivated successfully
  *         content:
  *           application/json:
  *             schema:
@@ -261,17 +261,17 @@ router.patch("/:id/activate", administratorController.activateAdministrator);
  *               properties:
  *                 message:
  *                   type: string
- *                   example: "Administrador desativado com sucesso"
- *                 administrador:
- *                   $ref: '#/components/schemas/Administrador'
+ *                   example: "Administrator deactivated successfully"
+ *                 administrator:
+ *                   $ref: '#/components/schemas/Administrator'
  *       404:
- *         description: Administrador não encontrado
+ *         description: Administrator not found
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Error'
  *       500:
- *         description: Erro interno do servidor
+ *         description: Internal server error
  *         content:
  *           application/json:
  *             schema:
@@ -281,20 +281,20 @@ router.patch("/:id/deactivate", administratorController.deactivateAdministrator)
 
 /**
  * @swagger
- * /administradores/{id}:
+ * /administrators/{id}:
  *   delete:
- *     summary: Deletar administrador
- *     tags: [Administradores]
+ *     summary: Delete administrator
+ *     tags: [Administrators]
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
  *         schema:
  *           type: integer
- *         description: ID do administrador
+ *         description: Administrator ID
  *     responses:
  *       200:
- *         description: Administrador removido com sucesso
+ *         description: Administrator removed successfully
  *         content:
  *           application/json:
  *             schema:
@@ -302,15 +302,15 @@ router.patch("/:id/deactivate", administratorController.deactivateAdministrator)
  *               properties:
  *                 message:
  *                   type: string
- *                   example: "Administrador removido com sucesso"
+ *                   example: "Administrator removed successfully"
  *       404:
- *         description: Administrador não encontrado
+ *         description: Administrator not found
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Error'
  *       500:
- *         description: Erro interno do servidor
+ *         description: Internal server error
  *         content:
  *           application/json:
  *             schema:

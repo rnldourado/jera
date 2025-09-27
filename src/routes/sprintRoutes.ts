@@ -24,13 +24,13 @@ const sprintController = new SprintController();
  *             schema:
  *               $ref: '#/components/schemas/Sprint'
  *       400:
- *         description: Dados inválidos
+ *         description: Invalid data
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Error'
  *       500:
- *         description: Erro interno do servidor
+ *         description: Internal server error
  *         content:
  *           application/json:
  *             schema:
@@ -42,11 +42,11 @@ router.post("/", sprintController.createSprint);
  * @swagger
  * /sprints:
  *   get:
- *     summary: Obter todas as sprints
+ *     summary: Get all sprints
  *     tags: [Sprints]
  *     responses:
  *       200:
- *         description: Lista de sprints retornada com sucesso
+ *         description: List of sprints returned successfully
  *         content:
  *           application/json:
  *             schema:
@@ -54,7 +54,7 @@ router.post("/", sprintController.createSprint);
  *               items:
  *                 $ref: '#/components/schemas/Sprint'
  *       500:
- *         description: Erro interno do servidor
+ *         description: Internal server error
  *         content:
  *           application/json:
  *             schema:
@@ -66,7 +66,7 @@ router.get("/", sprintController.getAllSprints);
  * @swagger
  * /sprints/{id}:
  *   get:
- *     summary: Obter sprint por ID
+ *     summary: Get sprint by ID
  *     tags: [Sprints]
  *     parameters:
  *       - in: path
@@ -74,22 +74,22 @@ router.get("/", sprintController.getAllSprints);
  *         required: true
  *         schema:
  *           type: integer
- *         description: ID da sprint
+ *         description: Sprint ID
  *     responses:
  *       200:
- *         description: Sprint encontrada
+ *         description: Sprint found
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Sprint'
  *       404:
- *         description: Sprint não encontrada
+ *         description: Sprint not found
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Error'
  *       500:
- *         description: Erro interno do servidor
+ *         description: Internal server error
  *         content:
  *           application/json:
  *             schema:
@@ -101,7 +101,7 @@ router.get("/:id", sprintController.getSprintById);
  * @swagger
  * /sprints/{id}:
  *   put:
- *     summary: Atualizar sprint
+ *     summary: Update sprint
  *     tags: [Sprints]
  *     parameters:
  *       - in: path
@@ -109,7 +109,7 @@ router.get("/:id", sprintController.getSprintById);
  *         required: true
  *         schema:
  *           type: integer
- *         description: ID da sprint
+ *         description: Sprint ID
  *     requestBody:
  *       required: true
  *       content:
@@ -118,25 +118,25 @@ router.get("/:id", sprintController.getSprintById);
  *             $ref: '#/components/schemas/SprintInput'
  *     responses:
  *       200:
- *         description: Sprint atualizada com sucesso
+ *         description: Sprint updated successfully
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Sprint'
  *       404:
- *         description: Sprint não encontrada
+ *         description: Sprint not found
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Error'
  *       400:
- *         description: Dados inválidos
+ *         description: Invalid data
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Error'
  *       500:
- *         description: Erro interno do servidor
+ *         description: Internal server error
  *         content:
  *           application/json:
  *             schema:
@@ -148,7 +148,7 @@ router.put("/:id", sprintController.updateSprint);
  * @swagger
  * /sprints/{id}:
  *   delete:
- *     summary: Deletar sprint
+ *     summary: Delete sprint
  *     tags: [Sprints]
  *     parameters:
  *       - in: path
@@ -156,10 +156,10 @@ router.put("/:id", sprintController.updateSprint);
  *         required: true
  *         schema:
  *           type: integer
- *         description: ID da sprint
+ *         description: Sprint ID
  *     responses:
  *       200:
- *         description: Sprint deletada com sucesso
+ *         description: Sprint deleted successfully
  *         content:
  *           application/json:
  *             schema:
@@ -167,15 +167,15 @@ router.put("/:id", sprintController.updateSprint);
  *               properties:
  *                 message:
  *                   type: string
- *                   example: "Sprint deletada com sucesso"
+ *                   example: "Sprint deleted successfully"
  *       404:
- *         description: Sprint não encontrada
+ *         description: Sprint not found
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Error'
  *       500:
- *         description: Erro interno do servidor
+ *         description: Internal server error
  *         content:
  *           application/json:
  *             schema:

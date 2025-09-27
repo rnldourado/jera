@@ -2,6 +2,11 @@ import { Request, Response, NextFunction } from 'express';
 import { verifyToken } from '../utils/auth';
 
 export const authenticate = (req: Request, res: Response, next: NextFunction) => {
+  // Allow OPTIONS requests (preflight) to pass through
+  if (req.method === 'OPTIONS') {
+    return next();
+  }
+
   const token = req.header('Authorization')?.replace('Bearer ', '');
 
   if (!token) {
